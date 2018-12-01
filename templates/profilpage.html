@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="activefirst">
+        <a class="active" href="{% url 'HomePageView' %}"><i class="fa fa-home" aria-hidden="true"></i> Ana Sayfa</a>
+        <a class="active" href="{% url 'campaign' %}"><i class="fa fa-flag-o" aria-hidden="true"></i> Kampanyalar</a>
+        <a class="active" href="{% url 'index' %}" user=user.id><i class="fa fa-fw fa-search" aria-hidden="true"></i> Ürün Ara</a>
+        <a class="active" href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
+    </div>
+        <div class="navbarright">
+            {% if user.is_authenticated %}
+            <a href="#">Hi {{ user.username }}</a>
+            <a href="{% url 'logout' %}">Log out</a>
+            <a href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i></a>
+            {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Log In </a>
+            <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+            {% endif %}
+            <a href="#"><i class="fa fa-fw fa-envelope"></i></a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            {% for user in profil %}
+         <div class="col-sm-4" id ="{{ user.no }}" style="display: grid;margin-top: 40px;text-align: center;">
+            <ul>
+                <li><h5><a href="{% url 'post_detail' pk=user.no %}">{{ user.title }}</a></h5></li>
+                <li> <a href="{{ user.url }}"><img style="width: 40%" src="{{ user.imageurl }}"></a></li>
+                <li>{{ user.site }}</li>
+                <li><strong><span>{{ user.pricedisplay }} TL</span></strong></li>
+                <li>Eklenme Zamanı:{{ user.searchtime }}</li>
+                <li><form method="post" action="" name="form1" class="form1"> {% csrf_token %}{{ form1 }} <input type="hidden" name="deleteserino" value="{{ user.no }}"/><button id="{{ user.serino }}" class="btn btn-primary">Ürünü Kaldır</button></form></li>
+            </ul>
+         </div>
+               <script>
+                       $(document).ready(function(){
+                        $("#{{ user.serino }}").click(function(){
+                            $("#{{ user.no }}").hide();
+                        });
+                    });
+
+                </script>
+            {% endfor %}
+        </div>
+    </div>
+
+{{ profil1 }}
+</body>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            var productForm = $(".form1")
+            productForm.submit(function (event) {
+                event.preventDefault();
+                console.log("form is not sending")
+                var thisForm = $(this)
+                var actionEndpoint = thisForm.attr("action");
+                var httpMethod = thisForm.attr("method");
+                var formData = thisForm.serialize();
+
+                $.ajax({
+
+                    url: actionEndpoint,
+                    method: httpMethod,
+                    data: formData,
+
+
+                    success: function (data) {
+                        console.log("success")
+                    },
+
+                    error: function (errorData) {
+                        console.log("error")
+                        console.log(errorData)
+
+                    }
+                })
+
+            })
+
+        })
+    </script>
+
+
+</html>
+
+
