@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7910f97-39bd-44c3-84a4-86b4c90e5c40" name="Default" comment="" />
+    <list default="true" id="e7910f97-39bd-44c3-84a4-86b4c90e5c40" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shopistproject/settings.py" afterPath="$PROJECT_DIR$/shopistproject/settings.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shopistproject.iml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shopistproject.iml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/shopistproject.iml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -79,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/urls.py">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shopistproject/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="195">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -212,7 +215,6 @@
         <option value="$PROJECT_DIR$/users/models.py" />
         <option value="$PROJECT_DIR$/users/views.py" />
         <option value="$PROJECT_DIR$/templates/signup.html" />
-        <option value="$PROJECT_DIR$/shopistproject/settings.py" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/Shopist/admin.py" />
         <option value="$PROJECT_DIR$/Shopist/models.py" />
@@ -229,6 +231,7 @@
         <option value="$PROJECT_DIR$/templates/campaign.html" />
         <option value="$PROJECT_DIR$/Shopist/hm.py" />
         <option value="$PROJECT_DIR$/Shopist/views.py" />
+        <option value="$PROJECT_DIR$/shopistproject/settings.py" />
       </list>
     </option>
   </component>
@@ -270,6 +273,11 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="shopistproject" type="cbb8eebc:String" user="shopistproject" />
               <item name="Shopist" type="cbb8eebc:String" user="Shopist" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="shopistproject" type="cbb8eebc:String" user="shopistproject" />
+              <item name="shopistproject" type="cbb8eebc:String" user="shopistproject" />
             </path>
           </expand>
           <select />
@@ -551,14 +559,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopistproject/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -820,6 +820,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopistproject/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
