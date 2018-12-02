@@ -2,7 +2,7 @@ import requests
 import sys
 sys.path.append('../lib/python3.6/site-packages/')
 from bs4 import BeautifulSoup
-from .models import Post, UserModel
+from Shopist.models import Post, UserModel
 # Create your views here.
 listsitem = []
 objects = UserModel.objects.all()
