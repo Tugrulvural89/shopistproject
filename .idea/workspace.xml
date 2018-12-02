@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e7910f97-39bd-44c3-84a4-86b4c90e5c40" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shopistproject/settings.py" afterPath="$PROJECT_DIR$/shopistproject/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -84,14 +85,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bs4cron.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bs4cron.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bs4cron/bs4cron.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="-374">
               <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shopistproject/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,16 +154,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shopistproject/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -235,8 +236,8 @@
         <option value="$PROJECT_DIR$/templates/campaign.html" />
         <option value="$PROJECT_DIR$/Shopist/hm.py" />
         <option value="$PROJECT_DIR$/Shopist/views.py" />
-        <option value="$PROJECT_DIR$/shopistproject/settings.py" />
         <option value="$PROJECT_DIR$/Shopist/tests.py" />
+        <option value="$PROJECT_DIR$/shopistproject/settings.py" />
       </list>
     </option>
   </component>
@@ -283,6 +284,11 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="shopistproject" type="cbb8eebc:String" user="shopistproject" />
               <item name="Shopist" type="cbb8eebc:String" user="Shopist" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="shopistproject" type="cbb8eebc:String" user="shopistproject" />
+              <item name="shopistproject" type="cbb8eebc:String" user="shopistproject" />
             </path>
           </expand>
           <select />
@@ -567,13 +573,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="829" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25546604" sideWeight="0.51131225" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32833788" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39373296" sideWeight="0.49062702" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292011" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24659401" sideWeight="0.48868778" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24659401" sideWeight="0.48868778" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14306152" sideWeight="0.4926004" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32789117" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -892,33 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopistproject/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
-          <folding>
-            <marker date="1543716836431" expanded="true" signature="934:1169" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="1298:1695" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="1749:2254" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="1755:2251" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="1928:2244" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="1964:2233" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2312:2386" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2401:2527" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2418:2525" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2531:2631" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2661:3055" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2667:2764" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2772:2859" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2867:2955" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="2963:3052" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="3059:3134" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="3230:3330" ph="..." />
-            <marker date="1543716836431" expanded="true" signature="3375:3392" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopistproject/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1015,11 +995,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bs4cron/bs4cron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="-374">
           <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopistproject/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

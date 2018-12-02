@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'Shopist.apps.ShopistConfig',
+    'bs4cron',
 
 ]
 
