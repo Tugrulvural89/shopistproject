@@ -19,6 +19,8 @@ ul {
     padding-right: 40px;
     transition: box-shadow .3s;
     border-radius:10px;
+    border: solid 1px;
+    border-color: antiquewhite;
 }
 
 ul:hover {
