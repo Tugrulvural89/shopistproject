@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
-    'Shopist',
-    'bs4cron',
+    'shopistproject.bs4cron',
+    'shopistproject.Shopist'
 
 ]
 
