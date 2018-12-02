@@ -1,7 +1,11 @@
+#!/usr/bin/python3.5
+import os
 import requests
 import sys
-sys.path.append('../lib/python3.6/site-packages/')
-sys.path.append('../shopistproject/Shopist/')
+sys.path.append('../lib/python3.5/site-packages/')
+sys.path.append('/home/tugrulv89/formeandu/shopistproject/')
+from django.conf import settings
+from django.db import models
 from bs4 import BeautifulSoup
 from Shopist.models import Post, UserModel
 # Create your views here.
