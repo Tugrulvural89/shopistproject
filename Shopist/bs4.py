@@ -13,7 +13,6 @@ for obj in objects:
             newhmr = sourcehm.find('span',class_="price-value").get_text().replace('TL','').strip().replace(',', '.')
         else:
             newhmr = "0"
-        print(obj.title+ " "+ newhmr+" "+ obj.url)
         listsitem.append({
             'isim' :obj.title,
             'track': newhmr,
@@ -32,8 +31,6 @@ for obj in objects:
             newtr = sourcetr.find(class_="sale-price").get_text().strip().replace('TL','').replace(',','.')
         else:
             newtr = "0"
-        print(newtr)
-        print(obj.title+ " " +newtr+" "+ obj.url)
         listsitem.append({
             'isim' :obj.title,
             'track': newtr,
@@ -52,7 +49,6 @@ for obj in objects:
             newbrsr = newbrs.find('ins').get_text().strip().replace('TL','').replace(',','.')
         else:
             newbrsr = "0"
-        print(obj.title + " " + newbrsr + " " + obj.url)
         listsitem.append({
             'isim' :obj.title,
             'track': newbrsr,
@@ -71,7 +67,6 @@ for obj in objects:
             newmrpr = newmrp.find('strong').get_text().strip().replace('TL','').replace(',','.')
         else:
             newmrpr = "0"
-        print(obj.title + " " + newmrpr + " " + obj.url)
         listsitem.append({
             'isim': obj.title,
             'track': newmrpr,
@@ -91,7 +86,6 @@ for obj in objects:
                 .strip().replace('TL', '').replace(',', '.')
         else:
             newmrkfobjs = "0"
-        print(obj.title + " " + newmrkfobjs + " " + obj.url)
         listsitem.append({
             'isim': obj.title,
             'track': newmrkfobjs,
