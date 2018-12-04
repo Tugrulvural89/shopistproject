@@ -1,13 +1,15 @@
-#!/usr/bin/python3.5
 import os
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shopistproject.settings')
+# import shoppistproject olmuyor
+import django
+django.setup()
 import requests
-import sys
-sys.path.append('../lib/python3.5/site-packages/')
 from bs4 import BeautifulSoup
-from Shopist.models import Post, UserModel
+import Shopist.models
 # Create your views here.
 listsitem = []
-objects = UserModel.objects.all()
+objects = Shopist.models.UserModel.objects.all()
 for obj in objects:
     if 'HM' == obj.site:
         hm = requests.get(obj.url)
@@ -100,17 +102,17 @@ for obj in objects:
             'site': obj.site,
             'pricedisplay': obj.pricedisplay,
             })
-trackitems = Post.objects.all()
+trackitems = Shopist.models.Post.objects.all()
 
 for objectitem in listsitem:
 
-    b = Post(track=objectitem['track'],
-             isim=objectitem['isim'],
-             url=objectitem['url'],
-             image=objectitem['image'],
-             user=objectitem['user'],
-             no=int(objectitem['no']),
-             site=objectitem['site'],
-             pricedisplay=objectitem['pricedisplay'])
+    b = Shopist.models.Post(track=objectitem['track'],
+                            isim=objectitem['isim'],
+                            url=objectitem['url'],
+                            image=objectitem['image'],
+                            user=objectitem['user'],
+                            no=int(objectitem['no']),
+                            site=objectitem['site'],
+                            pricedisplay=objectitem['pricedisplay'])
     b.save()
 
