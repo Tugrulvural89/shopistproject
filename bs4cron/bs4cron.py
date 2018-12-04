@@ -1,9 +1,4 @@
 import os
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shopistproject.settings')
-# import shoppistproject olmuyor
-import django
-django.setup()
 import requests
 from bs4 import BeautifulSoup
 import Shopist.models
