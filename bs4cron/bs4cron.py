@@ -1,10 +1,20 @@
 import os
+import sys
+path = '/home/tugrulv89/shopistproject'
+if path not in sys.path:
+    sys.path.insert(0, path)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'shopistproject.settings'
+import django
+django.setup()
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
 import requests
 from bs4 import BeautifulSoup
-import Shopist.models
+from Shopist.models import Post, UserModel
 # Create your views here.
 listsitem = []
-objects = Shopist.models.UserModel.objects.all()
+objects = UserModel.objects.all()
 for obj in objects:
     if 'HM' == obj.site:
         hm = requests.get(obj.url)
@@ -97,11 +107,11 @@ for obj in objects:
             'site': obj.site,
             'pricedisplay': obj.pricedisplay,
             })
-trackitems = Shopist.models.Post.objects.all()
+trackitems = Post.objects.all()
 
 for objectitem in listsitem:
 
-    b = Shopist.models.Post(track=objectitem['track'],
+    b = Post(track=objectitem['track'],
                             isim=objectitem['isim'],
                             url=objectitem['url'],
                             image=objectitem['image'],
