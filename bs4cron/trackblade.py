@@ -121,3 +121,6 @@ for objectitem in listsitem:
                             pricedisplay=objectitem['pricedisplay'])
     b.save()
 
+
+
+

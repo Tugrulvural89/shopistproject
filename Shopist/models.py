@@ -46,3 +46,13 @@ class UserModel(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Blogs(models.Model):
+    title = models.CharField(max_length=500)
+    image = models.CharField(max_length=500)
+    site = models.CharField(max_length=500)
+    url = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.title

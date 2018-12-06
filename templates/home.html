@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'css/Blogcsshomepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 </head>
 <body>
 
@@ -21,7 +21,11 @@
         <a class="active" href="{% url 'HomePageView' %}"><i class="fa fa-home" aria-hidden="true"></i> Ana Sayfa</a>
         <a class="active" href="{% url 'campaign' %}"><i class="fa fa-flag-o" aria-hidden="true"></i> Kampanyalar</a>
         <a class="active" href="{% url 'index' %}" user=user.id><i class="fa fa-fw fa-search" aria-hidden="true"></i> Ürün Ara</a>
-        <a class="active" href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
+        {% if user.is_authenticated %}
+            <a class="active" href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
+        {% else %}
+            <a class="active" href="{% url 'signup' %}"><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
+        {% endif %}
     </div>
     <div class="navbarright">
         {% if user.is_authenticated %}
@@ -29,8 +33,8 @@
         <a href="{% url 'logout' %}">Log out</a>
         <a href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i></a>
         {% else %}
-        <a href="{% url 'signup' %}">Sign Up</a>
-        <a href="{% url 'login' %}">Log In </a>
+            <a href="{% url 'signup' %}">Üye Ol</a>
+            <a href="{% url 'login' %}">Giriş Yap</a>
         <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
         {% endif %}
         <a href="#"><i class="fa fa-fw fa-envelope"></i></a>
@@ -40,15 +44,18 @@
 
 <div class="container">
     <div class="jumbotron text-center">
-        <div class="maintext">
-            <h1>Aynı Anda Tek Yerde</h1>
-            <p>Almak istediğin ürünü birçok sitede aynı anda sorgula.</p>
-            <p>Beğendiğin ürünleri takip et.</p>
-            <p>Fiyat değişikliklerinden anında mailine gelsin.</p>
-        </div>
+        <a target="_blank" href="{% url 'index' %}"><div class="maintext">
+            <h1>Almak İstediğin Ürünü Tüm Sitelerde Tek Seferde Sorgula</h1>
+            <p>İlgilendiğin Ürünleri Takibine Al</p>
+            <p>Ürünün Fiyat Değişikliklerinden İlk Senin Haberin Olsun</p>
+            <p>Yeni Çıkan Kampanya ve İndirimleri Kaçırma</p>
+        </div></a>
 
     </div>
-    <h5 style="text-align: center">Blog</h5>
+    <div class="maintextblog">
+        <h2 style="text-align: center">Blog</h2>
+        <h5 style="text-align: center">Yeni Trend ve Ürünleri Keşfet</h5>
+    </div>
     <div class="row">
 
         {% for x in home1 %}
