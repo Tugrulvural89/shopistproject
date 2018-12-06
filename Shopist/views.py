@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from .forms import NameForm, PostForm, DeleteForm
 from django.http import HttpResponse
-from .models import Post, UserModel
+from .models import Post, UserModel, Blogs
 from operator import itemgetter
 import random
 from django.core.paginator import Paginator
@@ -168,39 +168,8 @@ def index(request):
     return render(request, 'base.html', context)
 
 def HomePageView(request):
-    homepageblog = []
-    nonbirblog = requests.get("https://blog.n11.com/")
-    nonbirblogcon = BeautifulSoup(nonbirblog.content, "lxml")
-    nonbirblogconn = nonbirblogcon.find_all('div', class_="mp-container")[:5]
-    for blognon in nonbirblogconn:
-        homepageblog.append({
-            "url": blognon.find(class_='mp-image').attrs['href'],
-            "title": blognon.find(class_='mp-title').get_text(),
-            "image": blognon.find('img').get('src'),
-            "site": "n11",
-        })
-    ggblog = requests.get("https://blog.gittigidiyor.com/")
-    ggblogcon = BeautifulSoup(ggblog.content, "lxml")
-    ggblogconn = ggblogcon.find_all('div', class_="box-home")[:5]
-    for bloggg in ggblogconn:
-        homepageblog.append({
-            "url": bloggg.find('a').attrs['href'],
-            "title": bloggg.find('h3', class_='entry-title').get_text(),
-            "image": bloggg.find('img').get('src'),
-            "site": "GittiGidiyor",
-        })
-    bynblog = requests.get("http://talks.boyner.com.tr/")
-    bynrblogcon = BeautifulSoup(bynblog.content, "lxml")
-    bynrblogconn = bynrblogcon.find_all('div', class_="col-md-3")[:5]
-    for blogbynr in bynrblogconn:
-        homepageblog.append({
-            "url": "http://talks.boyner.com.tr" +blogbynr.find('a').attrs['href'],
-            "title": blogbynr.find('h2').get_text(),
-            "image": "http://talks.boyner.com.tr" + blogbynr.find('img',class_="image-css").get('src'),
-            "site": "Boyner",
-        })
-    home1 = sorted(homepageblog, key=itemgetter('title'), reverse=True)
-    context = {'homepageblog': homepageblog, 'home1':home1}
+    blogs = Blogs.objects.all()[:15]
+    context = {'blogs':blogs}
 
     return render(request, 'home.html', context)
 def profilpage(request):

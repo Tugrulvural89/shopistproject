@@ -53,6 +53,7 @@ class Blogs(models.Model):
     image = models.CharField(max_length=500)
     site = models.CharField(max_length=500)
     url = models.CharField(max_length=500)
+    searchtimeblog = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

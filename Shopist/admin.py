@@ -14,5 +14,5 @@ admin.site.register(UserModel, UserModelAdmin)
 
 
 class BlogsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image', 'site', 'url')
+    list_display = ('title', 'image', 'site', 'url','searchtimeblog')
 admin.site.register(Blogs, BlogsAdmin)
