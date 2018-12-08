@@ -14,8 +14,6 @@ import requests
 from bs4 import BeautifulSoup
 from Shopist.models import Blogs
 
-
-
 homepageblog = []
 nonbirblog = requests.get("https://blog.n11.com/")
 nonbirblogcon = BeautifulSoup(nonbirblog.content, "lxml")
@@ -57,3 +55,4 @@ for objectitem in homepageblog:
                             url=objectitem['url'],
                             image=objectitem['image'])
     cf.save()
+

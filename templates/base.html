@@ -110,6 +110,7 @@
                            <input type="hidden" name="user" value="{{ request.user }}"/>
                            <input type="hidden" name="serino" value="{{ object.serino }}"/>
                            <input type="hidden" name="pricedisplay" value="{{ object.pricedisplay }}"/>
+                           <input type="hidden" name="email" value="{{ user.email }}"/>
                         {% if user.is_authenticated %}
                            {% if object.serino not in denemes %}
                            <div class="exchange{{ object.serino }}"></div>

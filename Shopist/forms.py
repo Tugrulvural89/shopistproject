@@ -23,7 +23,7 @@ class PostForm(ModelForm):
     #itemi sadece form olarak html üzerinden hidden alıyoruz.
     class Meta:
         model = UserModel
-        fields = ['imageurl','keyword','title','price','url','site','serino','pricedisplay']
+        fields = ['imageurl','keyword','title','price','url','site','serino','pricedisplay','email']
         widgets = {'imageurl': forms.HiddenInput(),
                    'keyword': forms.HiddenInput(),
                    'price': forms.HiddenInput(),
@@ -33,6 +33,7 @@ class PostForm(ModelForm):
                    'serino': forms.HiddenInput(),
                    'user': forms.HiddenInput(),
                    'pricedisplay':forms.HiddenInput(),
+                   'email': forms.HiddenInput(),
                    }
 
 

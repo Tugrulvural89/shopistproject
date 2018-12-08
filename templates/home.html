@@ -58,12 +58,12 @@
     </div>
     <div class="row">
 
-        {% for x in home1 %}
+        {% for x in blogs %}
         <div class="col-md-6 col-md-2">
             <ul>
                 <a target="_blank" href="{{ x.url }}">
                 <li><h5>{{ x.title }}</h5></li>
-                <li>{{ x.site }}</li>
+                <li>{{ x.site }} / {{ x.searchtimeblog }}</li>
                 <li><img src="{{ x.image }}" width="165px"></li>
                 </a>
             </ul>

@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Post, UserModel, Blogs
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('isim','track','user','crontime','url', 'image','no','site','pricedisplay')
+    list_display = ('isim','track','user','crontime','url', 'image','no','site','pricedisplay','email')
 admin.site.register(Post, PostAdmin)
 
 
@@ -14,5 +14,5 @@ admin.site.register(UserModel, UserModelAdmin)
 
 
 class BlogsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image', 'site', 'url')
+    list_display = ('title', 'image', 'site', 'url','searchtimeblog')
 admin.site.register(Blogs, BlogsAdmin)
