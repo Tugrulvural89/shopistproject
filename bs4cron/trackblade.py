@@ -13,8 +13,6 @@ import requests
 from bs4 import BeautifulSoup
 from Shopist.models import Post, UserModel
 from django.core.mail import send_mail
-from django.core.mail import send_mail
-from users.models import CustomUser
 # Create your views here.
 listsitem = []
 objects = UserModel.objects.all()
@@ -136,25 +134,22 @@ for objectitem in listsitem:
                             email=objectitem['email'])
     b.save()
 
-<<<<<<< HEAD
 #from django.core.mail import send_mail
 #send_mail('sdasdadasd', 'asdasd', 'tugrulv89@foruandme.com', ['tugrulv89@gmail.com'], fail_silently=False)
-=======
 listsettrack = []
 for z in trackitems:
     listsettrack.append(z.isim)
 setlists = list(set(listsettrack))
 
-def emaillist():
+if len(setlists) > 0:
     for item in setlists:
         emaillist = []
         tracks = Post.objects.filter(isim=item).order_by('isim')[:2]
         for comp in tracks:
             emaillist.append([[comp.track],[comp.user,comp.isim,comp.serinotrack,comp.track]])
         if emaillist[0][0] > emaillist[1][0]:
-            send_mail('sdasdadasd', 'asdasd', 'tugrulv89@foruandme.com', ['tugrulv89@gmail.com'], fail_silently=False)
+            send_mail("Fiyat Değişikliği" , "Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.track), 'tugrulv89@foruandme.com', ['{0}'.format(comp.email)], fail_silently=False)
             print("Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.track))
-emaillist()
+else:
+    pass
 
-
->>>>>>> b2afdc2d3647dd9e5f41bdde717cba9c22393f7d
