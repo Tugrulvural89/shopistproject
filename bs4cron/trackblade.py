@@ -12,6 +12,9 @@ application = get_wsgi_application()
 import requests
 from bs4 import BeautifulSoup
 from Shopist.models import Post, UserModel
+from django.core.mail import send_mail
+from django.core.mail import send_mail
+from users.models import CustomUser
 # Create your views here.
 listsitem = []
 objects = UserModel.objects.all()
@@ -33,13 +36,15 @@ for obj in objects:
             'no':obj.no,
             'site':obj.site,
             'pricedisplay': obj.pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
             })
     if 'Trendyol' == obj.site:
         tr = requests.get(obj.url)
         sourcetr = BeautifulSoup(tr.content, "lxml")
         newtr = sourcetr.find(class_="sale-price")
         if newtr:
-            newtr = sourcetr.find(class_="sale-price").get_text().strip().replace('TL','').replace(',','.')
+            newtr = sourcetr.find(class_="sale-price").get_text().strip().replace('TL','').replace(',','.').strip()
         else:
             newtr = "0"
         listsitem.append({
@@ -51,6 +56,8 @@ for obj in objects:
             'no':obj.no,
             'site':obj.site,
             'pricedisplay': obj.pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
             })
     if 'Boyner' == obj.site:
         rbs = requests.get(obj.url)
@@ -69,6 +76,8 @@ for obj in objects:
             'no':obj.no,
             'site':obj.site,
             'pricedisplay': obj.pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
             })
     if 'Morhipo' == obj.site:
         mrpobj = requests.get(obj.url)
@@ -87,6 +96,8 @@ for obj in objects:
             'no': obj.no,
             'site': obj.site,
             'pricedisplay': obj.pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
             })
     if 'Markafoni' == obj.site:
         mrkfobj = requests.get(obj.url)
@@ -106,6 +117,8 @@ for obj in objects:
             'no': obj.no,
             'site': obj.site,
             'pricedisplay': obj.pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
             })
 trackitems = Post.objects.all()
 
@@ -118,9 +131,25 @@ for objectitem in listsitem:
                             user=objectitem['user'],
                             no=int(objectitem['no']),
                             site=objectitem['site'],
-                            pricedisplay=objectitem['pricedisplay'])
+                            pricedisplay=objectitem['pricedisplay'],
+                            serinotrack=objectitem['serinotrack'],
+                            email=objectitem['email'])
     b.save()
 
+listsettrack = []
+for z in trackitems:
+    listsettrack.append(z.isim)
+setlists = list(set(listsettrack))
 
+def emaillist():
+    for item in setlists:
+        emaillist = []
+        tracks = Post.objects.filter(isim=item).order_by('isim')[:2]
+        for comp in tracks:
+            emaillist.append([[comp.track],[comp.user,comp.isim,comp.serinotrack,comp.track]])
+        if emaillist[0][0] > emaillist[1][0]:
+            send_mail('sdasdadasd', 'asdasd', 'tugrulv89@foruandme.com', ['tugrulv89@gmail.com'], fail_silently=False)
+            print("Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.track))
+emaillist()
 
 

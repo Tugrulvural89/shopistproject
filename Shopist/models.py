@@ -10,7 +10,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     isim = models.CharField(max_length=250, null=True)
-    track = models.CharField(max_length=250, null=True)
+    track = models.DecimalField(max_digits=6, decimal_places=2)
     crontime = models.DateTimeField(default=timezone.now)
     url = models.CharField(max_length=550, null=True)
     image = models.CharField(max_length=550, null=True)
@@ -18,7 +18,8 @@ class Post(models.Model):
     no = models.IntegerField()
     site = models.CharField(max_length=250, null=True)
     pricedisplay = models.CharField(max_length=250, null=True)
-
+    serinotrack = models.CharField(max_length=250, null=True, default="234")
+    email = models.CharField(max_length=250, null=True, default="tugrulv89@gmail.com")
 
     def __str__(self):
         return self.isim
@@ -29,7 +30,7 @@ class UserModel(models.Model):
     pricedisplay = models.CharField(max_length=250, null=True)
     keyword = models.CharField(max_length=150)
     title = models.CharField(max_length=150)
-    price = models.CharField(max_length=150)
+    price = models.IntegerField()
     site = models.CharField(max_length=150)
     url = models.CharField(max_length=150)
     searchtime = models.DateTimeField(default=timezone.now)
@@ -38,7 +39,7 @@ class UserModel(models.Model):
       on_delete=models.CASCADE, null=True
     )
     serino = models.CharField(max_length=150, unique=False)
-
+    email = models.CharField(max_length=250, null=True, default="tugrulv89@gmail.com")
 
     def __str__(self):
         return self.title
