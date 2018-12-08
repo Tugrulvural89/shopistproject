@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Post, UserModel
+from .models import Post, UserModel, Blogs
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('isim','track','user','crontime','url', 'image','no','site','pricedisplay')
@@ -13,6 +13,6 @@ class UserModelAdmin(admin.ModelAdmin):
 admin.site.register(UserModel, UserModelAdmin)
 
 
-
-
-
+class BlogsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'image', 'site', 'url')
+admin.site.register(Blogs, BlogsAdmin)

@@ -121,6 +121,5 @@ for objectitem in listsitem:
                             pricedisplay=objectitem['pricedisplay'])
     b.save()
 
-
-
-
+#from django.core.mail import send_mail
+#send_mail('sdasdadasd', 'asdasd', 'tugrulv89@foruandme.com', ['tugrulv89@gmail.com'], fail_silently=False)

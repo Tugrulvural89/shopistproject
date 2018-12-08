@@ -27,6 +27,15 @@ SECRET_KEY = 'qky$xd67eh==_&sjw*69c^nuyi70g5l&pz52@##&pr%g&ko2@b'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+SEND_GRID_API_KEY = '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'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'tugrulvural'
+EMAIL_HOST_PASSWORD = '8992Te8992'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'tugrulv89@foruandme.com'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'HOSGELDIN'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
 INSTALLED_APPS = [
