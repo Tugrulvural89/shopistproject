@@ -23,6 +23,7 @@ def index(request):
                 return HttpResponse()
         if form.is_valid():
             sites = form.cleaned_data["countries"]
+            slug = form.cleaned_data['your_name']
             if request.user.is_authenticated:
                 models = UserModel.objects.filter(user=request.user)
                 for model in models:
@@ -154,7 +155,7 @@ def index(request):
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
             else:
                 newlist1 = []
-            context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,'newlist':newlist}
+            context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,'newlist':newlist,'slug':slug}
             return render(request, 'base.html', context)
         else:
             form = NameForm()
@@ -168,7 +169,7 @@ def index(request):
     return render(request, 'base.html', context)
 
 def HomePageView(request):
-    blogs = Blogs.objects.all()[:15]
+    blogs = Blogs.objects.all()[:20]
     context = {'blogs':blogs}
 
     return render(request, 'home.html', context)
