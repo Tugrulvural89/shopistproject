@@ -169,7 +169,7 @@ def index(request):
     return render(request, 'base.html', context)
 
 def HomePageView(request):
-    blogs = Blogs.objects.all()[:20]
+    blogs = Blogs.objects.all()
     context = {'blogs':blogs}
 
     return render(request, 'home.html', context)
