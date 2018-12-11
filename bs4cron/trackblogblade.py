@@ -17,7 +17,7 @@ from Shopist.models import Blogs
 homepageblog = []
 nonbirblog = requests.get("https://blog.n11.com/")
 nonbirblogcon = BeautifulSoup(nonbirblog.content, "lxml")
-nonbirblogconn = nonbirblogcon.find_all('div', class_="mp-container")[:5]
+nonbirblogconn = nonbirblogcon.find_all('div', class_="mp-container")
 for blognon in nonbirblogconn:
     homepageblog.append({
         "url": blognon.find(class_='mp-image').attrs['href'],
@@ -27,7 +27,7 @@ for blognon in nonbirblogconn:
     })
 ggblog = requests.get("https://blog.gittigidiyor.com/")
 ggblogcon = BeautifulSoup(ggblog.content, "lxml")
-ggblogconn = ggblogcon.find_all('div', class_="box-home")[:5]
+ggblogconn = ggblogcon.find_all('div', class_="box-home")
 for bloggg in ggblogconn:
     homepageblog.append({
         "url": bloggg.find('a').attrs['href'],
@@ -37,7 +37,7 @@ for bloggg in ggblogconn:
     })
 bynblog = requests.get("http://talks.boyner.com.tr/")
 bynrblogcon = BeautifulSoup(bynblog.content, "lxml")
-bynrblogconn = bynrblogcon.find_all('div', class_="col-md-3")[:5]
+bynrblogconn = bynrblogcon.find_all('div', class_="col-md-3")
 for blogbynr in bynrblogconn:
     homepageblog.append({
         "url": "http://talks.boyner.com.tr" + blogbynr.find('a').attrs['href'],
