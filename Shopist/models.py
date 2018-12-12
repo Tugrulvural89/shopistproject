@@ -10,7 +10,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     isim = models.CharField(max_length=250, null=True)
-    track = models.DecimalField(max_digits=6, decimal_places=2)
+    track = models.IntegerField()
     crontime = models.DateTimeField(default=timezone.now)
     url = models.CharField(max_length=550, null=True)
     image = models.CharField(max_length=550, null=True)

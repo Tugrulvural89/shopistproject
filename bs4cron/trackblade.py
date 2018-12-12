@@ -22,7 +22,7 @@ for obj in objects:
         sourcehm = BeautifulSoup(hm.content, "lxml")
         newhm = sourcehm.find('span',class_="price-value")
         if newhm:
-            newhmr = sourcehm.find('span',class_="price-value").get_text().replace('TL','').strip().replace(',', '.')
+            newhmr = sourcehm.find('span',class_="price-value").get_text().strip().replace('TL','').replace(',', '').replace('.', '')
         else:
             newhmr = "0"
         listsitem.append({
@@ -42,7 +42,7 @@ for obj in objects:
         sourcetr = BeautifulSoup(tr.content, "lxml")
         newtr = sourcetr.find(class_="sale-price")
         if newtr:
-            newtr = sourcetr.find(class_="sale-price").get_text().strip().replace('TL','').replace(',','.').strip()
+            newtr = sourcetr.find(class_="sale-price").get_text().strip().replace('TL', '').replace(',', '').replace('.', '')
         else:
             newtr = "0"
         listsitem.append({
@@ -62,7 +62,7 @@ for obj in objects:
         sourceboyners = BeautifulSoup(rbs.content, "lxml")
         newbrs = sourceboyners.find(class_='price-item')
         if newbrs:
-            newbrsr = newbrs.find('ins').get_text().strip().replace('TL','').replace(',','.')
+            newbrsr = newbrs.find('ins').get_text().strip().replace('TL','').replace(',', '').replace('.', '')
         else:
             newbrsr = "0"
         listsitem.append({
@@ -82,7 +82,7 @@ for obj in objects:
         sourcemrpobj = BeautifulSoup(mrpobj.content, "lxml")
         newmrp = sourcemrpobj.find(class_="final-price text-danger")
         if newmrp:
-            newmrpr = newmrp.find('strong').get_text().strip().replace('TL','').replace(',','.')
+            newmrpr = newmrp.find('strong').get_text().strip().replace('TL','').replace(',', '').replace('.', '')
         else:
             newmrpr = "0"
         listsitem.append({
@@ -103,7 +103,7 @@ for obj in objects:
         newmrkfobj = sourcemrkfobjobj.find(class_='display-inline-block', attrs={'data-pro-product-info':'sale_price'})
         if newmrkfobj:
             newmrkfobjs = sourcemrkfobjobj.find(class_='display-inline-block', attrs={'data-pro-product-info':'sale_price'}).get_text()\
-                .strip().replace('TL', '').replace(',', '.')
+                .strip().replace('TL', '').replace(',', '').replace('.', '')
         else:
             newmrkfobjs = "0"
         listsitem.append({
@@ -146,10 +146,11 @@ if len(setlists) > 0:
         emaillist = []
         tracks = Post.objects.filter(isim=item).order_by('isim')[:2]
         for comp in tracks:
-            emaillist.append([[comp.track],[comp.user,comp.isim,comp.serinotrack,comp.track]])
+            emaillist.append([[comp.track],[comp.user,comp.isim,comp.serinotrack,comp.track,comp.pricedisplay]])
+        print(emaillist)
         if emaillist[0][0] > emaillist[1][0]:
             send_mail("Fiyat Değişikliği" , "Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.track), 'tugrulv89@foruandme.com', ['{0}'.format(comp.email)], fail_silently=False)
-            print("Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.track))
+            print("Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.pricedisplay))
 else:
     pass
 
