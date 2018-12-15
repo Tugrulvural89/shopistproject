@@ -11,3 +11,6 @@ urlpatterns = [
     path('profilpage/', views.profilpage, name='profilpage'),
     path('urun/<int:pk>/', views.post_detail, name='post_detail'),
 ]
+
+
+

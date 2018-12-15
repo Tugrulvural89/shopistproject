@@ -4,7 +4,7 @@ from .models import Post, UserModel
 from django.contrib.auth import get_user_model
 
 class NameForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=100)
+    your_name = forms.CharField(label='Your name', max_length=100, required=True)
 
     OPTIONS = (
         ("Boyner", "Boyner"),
@@ -16,7 +16,7 @@ class NameForm(forms.Form):
         ("Markafoni", "Markafoni"),
     )
     countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                          choices=OPTIONS)
+                                          choices=OPTIONS,required=True)
 
 class PostForm(ModelForm):
     #usermodel oluşturulup customuser managerden foreing key olarak çekildi.

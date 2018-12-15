@@ -67,14 +67,13 @@
 {% for profil in profils %}
     <p>Arama Kelimesi : <a target="_blank" href="{{ profil.url }}"><strong> {{ profil.keyword }}</strong></a></p>
     <p>{{ profil.title }}</p>
-    <a>Aranan Site:<strong><a target="_blank" href="{{ profil.url }}"><strong> {{ profil.site }}</strong></a></p>
+    <p>Aranan Site:<a target="_blank" href="{{ profil.url }}"><strong>{{ profil.site }}</strong></a></p>
     <p></p>
-    <a target="_blank" href="{{ profil.site }}"><img src="{{ profil.imageurl }}"> </a>
-    <p>Ürün Kodu:<strong> {{ profil.serino }}</strong></p>
-    <p>Ürün Fiyatı:<strong> {{ profil.pricedisplay }} TL</strong></p>
+    <a target="_blank" href="{{ profil.url }}"><img src="{{ profil.imageurl }}"></a>
+    <p>Ürün Kodu:</p><strong> {{ profil.serino }}</strong>
+    <p>Ürün Fiyatı:</p><strong> {{ profil.pricedisplay }} TL</strong>
 {% endfor %}
     <ins>Detaylı aramaları aşağıdaki tablodan takip edebilirsiniz.</ins>
-
 </div>
 
     <div style="margin: 150px;"></div>

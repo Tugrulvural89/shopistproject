@@ -7,6 +7,18 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+import datetime
+import pytz
+
+
+class Keyword(models.Model):
+    kelime = models.CharField(max_length=250, null=False)
+    sites = models.CharField(max_length=250, null=True)
+    users = models.CharField(max_length=250, null=True, default="bilinmiyor")
+    srptime = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.kelime
 
 class Post(models.Model):
     isim = models.CharField(max_length=250, null=True)
@@ -55,6 +67,17 @@ class Blogs(models.Model):
     site = models.CharField(max_length=500)
     url = models.CharField(max_length=500)
     searchtimeblog = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+
+class Campaign(models.Model):
+    title = models.CharField(max_length=500)
+    image = models.CharField(max_length=500, null=True)
+    site = models.CharField(max_length=500)
+    url = models.CharField(max_length=500)
+    searchtimeblog = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title

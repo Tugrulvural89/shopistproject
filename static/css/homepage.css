@@ -3,14 +3,6 @@ body {
     font-style: normal;
     font-weight: 400;
 }
-.images{
-    width: 30%;
-
-}
-
-nav {
-    margin-top:100px;
-}
 
 footer {
     margin-top: 50px;
@@ -47,34 +39,9 @@ div a:hover {
     margin-top:10px;
     margin-bottom:10px;
 }
-.jumbotron {
-  background-image: url("../images/anamain.jpg");
-  background-color: rgba(0, 0, 0, 0.89);
-  height: 500px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  opacity: 0.9;
-  filter: alpha(opacity=90);
-}
 
-.jumbotron h1,p {
-    text-decoration: none;
-    color: black;
-}
 
-.maintextblog {
-    margin: 30px;
-}
-.jumbotron:hover {
-  opacity: 0.7;
-  filter: alpha(opacity=70);
-}
 
-.homeimage {
-    padding-left: 250px;
-}
 
 /* Style the navigation bar */
 .navbar {;
@@ -131,12 +98,8 @@ div a:hover {
 .searchform-sites label{
     margin: 5px;
 }
-#loading {
-    background: url('/static/images/tenor.gif') no-repeat center center;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
+
+
 /*footer*/
 .col_white_amrc { color:#FFF;}
 footer { width:100%; background-color:#263238; min-height:250px; padding:10px 0px 25px 0px ;}
@@ -172,12 +135,30 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
 .social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
 .social_footer_ul li i {  width:20px; height:20px; text-align:center;}
+
+@media screen and (min-width: 768px) {
+    .forminput {
+        width: 40%;
+        border-radius: 20px;
+        border:solid 1px;
+        text-align: center;
+    }
+}
+
+
+
+
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .navbar a {
     float: none;
     display: block;
   }
-
+  .forminput {
+    width: 100%;
+    border-radius: 20px;
+    border:solid 1px;
+    text-align: center;
+  }
 
 }
