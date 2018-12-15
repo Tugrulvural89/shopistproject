@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7910f97-39bd-44c3-84a4-86b4c90e5c40" name="Default" comment="user password sayfalari footer css duzenlemeleri&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopist/admin.py" afterPath="$PROJECT_DIR$/Shopist/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopist/forms.py" afterPath="$PROJECT_DIR$/Shopist/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopist/models.py" afterPath="$PROJECT_DIR$/Shopist/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopist/urls.py" afterPath="$PROJECT_DIR$/Shopist/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopist/views.py" afterPath="$PROJECT_DIR$/Shopist/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/Blogcsshomepage.css" afterPath="$PROJECT_DIR$/static/css/Blogcsshomepage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/homepage.css" afterPath="$PROJECT_DIR$/static/css/homepage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/campaign.html" afterPath="$PROJECT_DIR$/templates/campaign.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/home.html" afterPath="$PROJECT_DIR$/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profildetailpage.html" afterPath="$PROJECT_DIR$/templates/profildetailpage.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -136,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/static/css/homepage.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="366">
-              <caret line="162" column="0" lean-forward="true" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+              <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -146,7 +135,7 @@
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3630">
-              <caret line="242" column="16" lean-forward="true" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
+              <caret line="242" column="16" lean-forward="false" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
               <folding>
                 <element signature="n#style#0;n#input#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -164,7 +153,7 @@
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="86">
-              <caret line="52" column="103" lean-forward="true" selection-start-line="51" selection-start-column="78" selection-end-line="52" selection-end-column="103" />
+              <caret line="52" column="103" lean-forward="false" selection-start-line="51" selection-start-column="78" selection-end-line="52" selection-end-column="103" />
               <folding>
                 <element signature="n#style#0;n#input#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -909,10 +898,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1544883296042" expanded="true" signature="63616:63633" ph="..." />
-            <marker date="1544883296042" expanded="true" signature="63616:63651" ph="..." />
-            <marker date="1544883296042" expanded="true" signature="63616:63664" ph="..." />
-            <marker date="1544883296042" expanded="true" signature="63616:63679" ph="..." />
+            <marker date="1544883347175" expanded="true" signature="63622:63639" ph="..." />
+            <marker date="1544883347175" expanded="true" signature="63622:63657" ph="..." />
+            <marker date="1544883347175" expanded="true" signature="63622:63670" ph="..." />
+            <marker date="1544883347175" expanded="true" signature="63622:63685" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1038,7 +1027,7 @@
     <entry file="file://$PROJECT_DIR$/static/css/homepage.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
-          <caret line="162" column="0" lean-forward="true" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1046,7 +1035,7 @@
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
-          <caret line="52" column="103" lean-forward="true" selection-start-line="51" selection-start-column="78" selection-end-line="52" selection-end-column="103" />
+          <caret line="52" column="103" lean-forward="false" selection-start-line="51" selection-start-column="78" selection-end-line="52" selection-end-column="103" />
           <folding>
             <element signature="n#style#0;n#input#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -1056,7 +1045,7 @@
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3630">
-          <caret line="242" column="16" lean-forward="true" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
+          <caret line="242" column="16" lean-forward="false" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
           <folding>
             <element signature="n#style#0;n#input#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
