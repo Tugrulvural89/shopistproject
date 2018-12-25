@@ -103,7 +103,7 @@ class Intagram(models.Model):
     tagname = models.CharField(max_length=250, null=True)
     tagpic = models.CharField(max_length=500, null=True)
     image_src = models.CharField(max_length=550, null=True)
-    image_comment = models.CharField(max_length=250, null=True)
+    image_comment = models.CharField(max_length=1050, null=True)
     image_display_url = models.CharField(max_length=250, null=True)
     image_like_count = models.IntegerField(null=True, default="234")
     hastag = models.CharField(max_length=250, null=True, default="234")
