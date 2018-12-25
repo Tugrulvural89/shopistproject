@@ -8,6 +8,11 @@ a {
     color: black;
 }
 
+footer a {
+    color: #007bff;
+}
+
+
 /*footer*/
 .col_white_amrc { color:#FFF;}
 footer { width:100%; background-color:#263238; min-height:250px; padding:10px 0px 25px 0px ;}
@@ -48,6 +53,9 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 
 
 @media screen and (min-width: 768px) {
+    .container {
+        margin-top: 100px;
+    }
     /* Style the navigation bar */
     .navbar {;
         display: flex;
@@ -87,22 +95,44 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         float: right;
         padding-right: 70px;
         display: flex;
-}
+    }
+    .maintextblog {
+        float: left;
+    }
     /* Style the SRP */
-    .col-md-6 ul {
+    .col-md-4 ul {
         list-style: none;
         padding-right: 40px;
         transition: box-shadow .3s;
         border-radius: 10px;
         border: solid 1px;
         border-color: antiquewhite;
+        text-align: center;
+        overflow: scroll;
     }
-    ul:hover {
+    #stickypopuler {
+        text-align: center;
+    }
+
+    #stickhome {
+        list-style: none;
+        text-align: center;
+        transition: box-shadow .3s;
+        border-radius: 10px;
+        border: solid 1px;
+        border-color: antiquewhite;
+    }
+    #stickhome ul {
+        list-style: none;
+        text-align: center;
+    }
+
+    #stickhome:hover {
         box-shadow: 0 0 11px rgba(33,33,33,.2);
 
     }
-    ul img{
-        width: 100%;
+    #blog ul:hover {
+        box-shadow: 0 0 11px rgba(33,33,33,.2);
 
     }
 
@@ -224,7 +254,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         display: flex;
 }
     /* Style the SRP */
-    .col-md-6 ul {
+    .col-md-4 ul {
         list-style: none;
         padding-right: 40px;
         transition: box-shadow .3s;

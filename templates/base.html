@@ -6,6 +6,8 @@
       <title>Foruandme Ürün Arama Motoru</title>
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -14,28 +16,7 @@
    </head>
    <body>
       <nav class="navbar">
-         <div class="activefirst">
-            <a class="active" href="{% url 'HomePageView' %}"><i class="fa fa-home" aria-hidden="true"></i> Ana Sayfa</a>
-            <a class="active" href="{% url 'campaign' %}"><i class="fa fa-flag-o" aria-hidden="true"></i> Kampanyalar</a>
-            <a class="active" href="{% url 'index' %}" user=user.id><i class="fa fa-fw fa-search" aria-hidden="true"></i> Ürün Ara</a>
-            {% if user.is_authenticated %}
-            <a class="active" href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
-            {% else %}
-            <a class="active" href="{% url 'signup' %}"><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
-            {% endif %}
-         </div>
-         <div class="navbarright">
-            {% if user.is_authenticated %}
-            <a href="#">Hi {{ user.username }}</a>
-            <a href="{% url 'logout' %}">Log out</a>
-            <a href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i></a>
-            {% else %}
-            <a href="{% url 'signup' %}">Üye Ol</a>
-            <a href="{% url 'login' %}">Giriş Yap</a>
-            <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a>
-            {% endif %}
-            <a href="#"><i class="fa fa-fw fa-envelope"></i></a>
-         </div>
+        {% include 'include/nav.html' %}
       </nav>
       <form action="" class="searchform" method="post">
          {% csrf_token %}
@@ -66,149 +47,93 @@
          </div>
       </form>
       <div class="container">
-         {% if form.is_valid %}
-         <ul class="breadcrumb" style="margin: 20px;">
-            <li class="breadcrumb-item"><a href="#">Arama</a></li>
-            <li class="breadcrumb-item"><a href="#">Siteler</a></li>
-            <li class="breadcrumb-item"><a href="#">Kelime</a></li>
-            <li class="breadcrumb-item active"><strong>{{ form.your_name.value }}</strong> kelime aramanızda <strong>{{ newlist|length }}
-               sonuç bulundu</strong>
-            </li>
-         </ul>
-         {% endif %}
-         <div class="row">
-            {% for object in newlist %}
-            <div class="col-md-4" style="display: grid;margin-top: 40px;text-align: center;">
-               <ul>
-                  <li>
-                     <div style="background-color:#ffffff;" class="w3-dropdown-hover">
-                        <img src="{{ object.img }}" alt="Monterosso" style="width:50%;">
-                        <div class="w3-dropdown-content" style="width:100px"><br>
-                           <img src="{{ object.img }}" alt="Norway" style="width:200%">
-                           <a href="{{ object.url }}" class="w3-border">Siteyi Ziyaret Et»</a>
-                        </div>
-                     </div>
-                  </li>
-                  <li>Satıldığı Site: <strong>{{ object.site }}</strong></li>
-                  <li>Ürün Kodu: <strong>{{ object.serino }}</strong></li>
-                  <li><span><strong>{{ object.title }}</strong></span></li>
-                  <li><span><strong>{{ object.pricedisplay }} TL</strong></span></li>
-                  <li><span><a target="_blank" href="{{ object.url }}"><strong>Ürünü sitesinde incelemek için TIKLA</strong></a></span></li>
-                  <li>
-                     <form method="post" action="" name="form1"  class="form1">
-                        {% csrf_token %}
-                        <input type="hidden" name="imageurl" value="{{ object.img }}"/>
-                        <input type="hidden" name="keyword"  value="{{ form.your_name.value }}"/>
-                        <input type="hidden" name="url"  value="{{ object.url }}"/>
-                        <input type="hidden" name="site"  value="{{ object.site }}"/>
-                        <input type="hidden" name="price"  value="{{ object.price }}"/>
-                        <input type="hidden" name="title"  value="{{ object.title }}"/>
-                        <input type="hidden" name="user" value="{{ request.user }}"/>
-                        <input type="hidden" name="serino" value="{{ object.serino }}"/>
-                        <input type="hidden" name="pricedisplay" value="{{ object.pricedisplay }}"/>
-                        <input type="hidden" name="email" value="{{ user.email }}"/>
-                        {% if user.is_authenticated %}
-                        {% if object.serino not in denemes %}
-                        <div class="exchange{{ object.serino }}"></div>
-                        <button id="btn{{ object.serino }}" type="submit" class="btn btn-primary">Takip Et</button>
-                        <script>
-                           $(document).ready(function(){
-                            $("#btn{{ object.serino }}").click(function(){
-                                $("#btn{{ object.serino }}").hide();
-                                $(".exchange{{ object.serino }}").html("<button id=\"btn{{ object.serino }}\" type=\"reset\" class=\"btn btn-primary\">takip edildi!</button>");
+          {% if form.is_valid %}
+          <ul class="breadcrumb" style="margin: 20px;">
+             <li class="breadcrumb-item"><a href="#">Arama</a></li>
+             <li class="breadcrumb-item"><a href="#">Siteler</a></li>
+             <li class="breadcrumb-item"><a href="#">Kelime</a></li>
+             <li class="breadcrumb-item active"><strong>{{ form.your_name.value }}</strong> kelime aramanızda <strong>{{ newlist|length }}
+                sonuç bulundu</strong>
+             </li>
+          </ul>
+          {% endif %}
+          <div class="row">
+            {% if form.is_valid %}
+             {% for object in newlist %}
+             <div class="col-md-4" style="display: grid;margin-top: 40px;text-align: center;">
+                <ul>
+                   <li>
+                      <div style="background-color:#ffffff;" class="w3-dropdown-hover">
+                         <img src="{{ object.img }}" alt="Monterosso" style="width:50%;">
+                         <div class="w3-dropdown-content" style="width:100px"><br>
+                            <img src="{{ object.img }}" alt="Norway" style="width:200%">
+                            <a href="{{ object.url }}" class="w3-border">Siteyi Ziyaret Et»</a>
+                         </div>
+                      </div>
+                   </li>
+                   <li>Satıldığı Site: <strong>{{ object.site }}</strong></li>
+                   <li>Ürün Kodu: <strong>{{ object.serino }}</strong></li>
+                   <li><span><strong>{{ object.title }}</strong></span></li>
+                   <li><span><strong>{{ object.pricedisplay }} TL</strong></span></li>
+                   <li><span><a target="_blank" href="{{ object.url }}"><strong>Ürünü sitesinde incelemek için TIKLA</strong></a></span></li>
+                   <li>
+                      <form method="post" action="" name="form1"  class="form1">
+                         {% csrf_token %}
+                         <input type="hidden" name="imageurl" value="{{ object.img }}"/>
+                         <input type="hidden" name="keyword"  value="{{ form.your_name.value }}"/>
+                         <input type="hidden" name="url"  value="{{ object.url }}"/>
+                         <input type="hidden" name="site"  value="{{ object.site }}"/>
+                         <input type="hidden" name="price"  value="{{ object.price }}"/>
+                         <input type="hidden" name="title"  value="{{ object.title }}"/>
+                         <input type="hidden" name="user" value="{{ request.user }}"/>
+                         <input type="hidden" name="serino" value="{{ object.serino }}"/>
+                         <input type="hidden" name="pricedisplay" value="{{ object.pricedisplay }}"/>
+                         <input type="hidden" name="email" value="{{ user.email }}"/>
+                         {% if user.is_authenticated %}
+                         {% if object.serino not in denemes %}
+                         <div class="exchange{{ object.serino }}"></div>
+                         <button id="btn{{ object.serino }}" type="submit" class="btn btn-primary">Takip Et</button>
+                         <script>
+                            $(document).ready(function(){
+                             $("#btn{{ object.serino }}").click(function(){
+                                 $("#btn{{ object.serino }}").hide();
+                                 $(".exchange{{ object.serino }}").html("<button id=\"btn{{ object.serino }}\" type=\"reset\" class=\"btn btn-primary\">takip edildi!</button>");
+                             });
                             });
-                           });
-                        </script>
-                        {% else %}
-                        <button type="reset" class="btn btn-primary"><a href="{% url 'profilpage' %}" user=user.id>takip ediliyor</a></button>
-                        {% endif %}
-                        {% else %}
-                        <button type="reset" class="btn btn-primary"><a href="{% url 'signup' %}">Üye Ol</a></button>
-                        {% endif %}
-                     </form>
-                  </li>
-               </ul>
-            </div>
-            {% endfor %}
-         </div>
+                         </script>
+                         {% else %}
+                         <button type="reset" class="btn btn-primary"><a href="{% url 'profilpage' %}" user=user.id>takip ediliyor</a></button>
+                         {% endif %}
+                         {% else %}
+                         <button type="reset" class="btn btn-primary"><a href="{% url 'signup' %}">Üye Ol</a></button>
+                         {% endif %}
+                      </form>
+                   </li>
+                </ul>
+             </div>
+                 {% empty %}
+                 <h3 style="text-align: center">Aradığın ürün bulunamadı. Başka bir ürün aramaya nedersin? Daha çok sitede aramayı deneyebilirsin.</h3>
+             {% endfor %}
+            {% endif %}
+
+                {% for item in intagrams %}
+             <div class="col-md-4">
+             <a target="_blank" href="https://www.instagram.com/explore/tags/{{ item.tagname }}">
+                 <ul>
+                   <li>#{{ item.tagname|truncatewords:50 }}</li>
+                   <li>{{ item.crontime|truncatewords:50 }}</li>
+                   <li><img class="img-responsive" alt="Responsive image" src="{{ item.image_src }}"> </li>
+                   <li id="#comment1">{{ item.image_comment|truncatechars:40 }}</li>
+                   <li>Beğeni: {{ item.image_like_count }}</li>
+                </ul>
+             </a>
+             </div>
+
+                {% endfor %}
+          </div>
       </div>
       <footer class="footer">
-         <div class="container bottom_border">
-            <div class="row">
-               <div class=" col-sm-4 col-md col-sm-4  col-12 col">
-                  <h5 class="headin5_amrc col_white_amrc pt2">Bize Ulaşın / Hakkımızda</h5>
-                  <!--headin5_amrc-->
-                  <p class="mb10">www.foruandme.com sizlere online pazardaki moda ürünleri tek panelden arama, karşılaştırma ve fiyat takibi yapma imkanı sunuyor.</p>
-                  <p><i class="fa fa-location-arrow"></i> Caferağa Talimhane Sok. Kadiköy/İstanbul</p>
-                  <p><i class="fa fa-phone"></i>  +90 546 887 95 96 </p>
-                  <p><i class="fa fa fa-envelope"></i> tvural@lookupprice.com  </p>
-               </div>
-               <div class=" col-sm-4 col-md  col-6 col">
-                  <h5 class="headin5_amrc col_white_amrc pt2">Favori Aramalar</h5>
-                  <!--headin5_amrc-->
-                  <ul class="footer_ul_amrc">
-                     <li><a target="_blank" href="http://www.foruandme.com/arama/">Mont</a></li>
-                     <li><a target="_blank"  href="http://www.foruandme.com/arama/">Ayakkabı</a></li>
-                     <li><a target="_blank"  href="http://www.foruandme.com/arama/">Atkı</a></li>
-                     <li><a target="_blank"  href="http://www.foruandme.com/arama/">Part Elbise</a></li>
-                     <li><a target="_blank"  href="http://www.foruandme.com/arama/">Kaban</a></li>
-                     <li><a target="_blank"  href="http://www.foruandme.com/arama/">Saat</a></li>
-                  </ul>
-                  <!--footer_ul_amrc ends here-->
-               </div>
-               <div class=" col-sm-4 col-md  col-6 col">
-                  <h5 class="headin5_amrc col_white_amrc pt2">Siteler</h5>
-                  <!--headin5_amrc-->
-                  <ul class="footer_ul_amrc">
-                     <li><a href="#">H&M</a></li>
-                     <li><a href="#">Markafoni</a></li>
-                     <li><a href="#">Boyner</a></li>
-                     <li><a href="#">Trendyol</a></li>
-                     <li><a href="#">Morhipo</a></li>
-                     <li><a href="#">Daha fazlası..</a></li>
-                  </ul>
-                  <!--footer_ul_amrc ends here-->
-               </div>
-               <div class=" col-sm-4 col-md  col-12 col">
-                  <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-                  <!--headin5_amrc ends here-->
-                  <ul class="footer_ul2_amrc">
-                     <li>
-                        <a href="#"><i class="fa fa-twitter fleft padding-right"></i> </a>
-                        <p>Fiyatlara anında ulaş...<a href="#">www.foruandme.com</a></p>
-                     </li>
-                     <li>
-                        <a href="#"><i class="fa fa-twitter fleft padding-right"></i> </a>
-                        <p>Son çıkan kampayalardan haberin olsun...<a href="#">www.foruandme.com</a></p>
-                     </li>
-                     <li>
-                        <a href="#"><i class="fa fa-twitter fleft padding-right"></i> </a>
-                        <p>Bütün sitelere tek panelden eriş...<a href="#">www.foruandme.com</a></p>
-                     </li>
-                  </ul>
-                  <!--footer_ul2_amrc ends here-->
-               </div>
-            </div>
-         </div>
-         <div class="container">
-            <ul class="foote_bottom_ul_amrc">
-               <li><a href="#">Anasayfa</a></li>
-               <li><a href="#">Üye ol</a></li>
-               <li><a href="#">Kampanyalar</a></li>
-               <li><a href="#">2.el ürünler</a></li>
-               <li><a href="#">Blog</a></li>
-               <li><a href="#">Arama Yap</a></li>
-            </ul>
-            <!--foote_bottom_ul_amrc ends here-->
-            <p class="text-center">Copyright @2019 | Designed With by tugrul vural<a href="#"> Lookupprice</a></p>
-            <ul class="social_footer_ul">
-               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-               <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-            <!--social_footer_ul ends here-->
-         </div>
+         {% include 'include/footer.html' %}
       </footer>
    </body>
    <script type="text/javascript">
@@ -246,8 +171,6 @@
 
       })
    </script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130645612-1"></script>
    <script>

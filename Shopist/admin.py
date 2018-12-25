@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Post, UserModel, Blogs, Campaign, Keyword
+from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog
 
 
 
@@ -29,5 +29,20 @@ admin.site.register(Campaign, CampaignAdmin)
 class KeywordAdmin(admin.ModelAdmin):
     list_display = ('kelime','srptime','sites','users')
 admin.site.register(Keyword, KeywordAdmin)
+
+
+class UrunInputAdmin(admin.ModelAdmin):
+    list_display = ('title','price','crontime','site','kelimearama')
+admin.site.register(UrunInput, UrunInputAdmin)
+
+
+class IntagramAdmin(admin.ModelAdmin):
+    list_display = ('tagname','crontime','image_like_count')
+admin.site.register(Intagram, IntagramAdmin)
+
+
+class ContentBlogAdmin(admin.ModelAdmin):
+    list_display = ('title','site','slug')
+admin.site.register(ContentBlog, ContentBlogAdmin)
 
 

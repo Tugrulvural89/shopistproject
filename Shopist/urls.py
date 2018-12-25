@@ -5,11 +5,14 @@ from django.contrib.auth import get_user_model
 
 
 urlpatterns = [
-    path('arama/',views.index,name="index"),
     path('', views.HomePageView, name='HomePageView'),
+    path('arama/',views.index,name="index"),
     path('campaign/', views.campaign, name='campaign'),
     path('profilpage/', views.profilpage, name='profilpage'),
-    path('urun/<int:pk>/', views.post_detail, name='post_detail'),
+    path('takip/<int:pk>/', views.post_detail, name='post_detail'),
+    path('urun/<slug>/', views.urunsayfa, name='urunsayfa'),
+    path('blog/', views.contentblog, name='contentblog'),
+    path('blog/<slug>/', views.contentblogdetail, name='contentblogdetail'),
 ]
 
 

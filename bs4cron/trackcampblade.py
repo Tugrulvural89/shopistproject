@@ -12,6 +12,7 @@ application = get_wsgi_application()
 import requests
 from bs4 import BeautifulSoup
 from Shopist.models import Post, UserModel, Campaign
+import datetime
 from django.core.mail import send_mail
 # Create your views here.
 
@@ -49,7 +50,6 @@ for n in xcc:
         "site": "N11",
     })
 
-trackitems = Campaign.objects.all()
 
 for objectitem in homelists:
 
@@ -60,4 +60,5 @@ for objectitem in homelists:
     cd.save()
 
 
-
+trackitems = Campaign.objects.all().exclude(searchtimeblog=datetime.date.today())
+trackitems.delete()

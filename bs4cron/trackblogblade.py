@@ -1,4 +1,3 @@
-
 import os
 import sys
 path = '/home/tugrulv89/shopistproject'
@@ -13,6 +12,7 @@ application = get_wsgi_application()
 import requests
 from bs4 import BeautifulSoup
 from Shopist.models import Blogs
+import datetime
 
 homepageblog = []
 nonbirblog = requests.get("https://blog.n11.com/")
@@ -46,7 +46,6 @@ for blogbynr in bynrblogconn:
         "site": "Boyner",
     })
 
-trackitems = Blogs.objects.all()
 
 for objectitem in homepageblog:
 
@@ -56,3 +55,5 @@ for objectitem in homepageblog:
                             image=objectitem['image'])
     cf.save()
 
+trackitems = Blogs.objects.all().exclude(searchtimeblog=datetime.date.today())
+trackitems.delete()

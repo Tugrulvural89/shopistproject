@@ -3,9 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 from .forms import NameForm, PostForm, DeleteForm
 from django.http import HttpResponse
-from .models import Post, UserModel, Blogs, Campaign, Keyword
+from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog
 from operator import itemgetter
 import datetime
+from django.core.paginator import Paginator
 import pytz
 import random
 from django.core.paginator import Paginator
@@ -14,6 +15,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 def index(request):
     newlist=[]
     denemes = []
+    intagrams = Intagram.objects.all().order_by("-image_like_count")[1:4]
     if request.method == 'POST':
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
@@ -164,16 +166,35 @@ def index(request):
         else:
             form = NameForm()
             form1 = PostForm()
-        context = {'form': form,'form1': form1}
+        context = {'form': form,'form1': form1,'intagrams':intagrams}
         return render(request, 'base.html', context)
     else:
         form = NameForm()
         form1 = PostForm()
-    context = {'form': form, 'form1': form1}
+    context = {'form': form, 'form1': form1,'intagrams':intagrams}
     return render(request, 'base.html', context)
+def contentblog(request):
+    contents_list = ContentBlog.objects.all()
+    paginator = Paginator(contents_list, 6)
+    page = request.GET.get('page')
+    contents = paginator.get_page(page)
+    context= {'contents':contents}
+    return render(request, 'contentlist.html', context)
+
+def contentblogdetail(request, slug=ContentBlog.slug):
+    content = get_object_or_404(ContentBlog, slug=slug)
+    #content = ContentBlog.objects.filter(slug=slug)[0:1]
+    context= {'content':content}
+    return render(request, 'contentlistdetail.html', context)
+
 
 def HomePageView(request):
-    blogs = Blogs.objects.all()
+    trackitems = UrunInput.objects.all()[0:6]
+    blogs = Blogs.objects.all()[0:6]
+    contents = ContentBlog.objects.all()[0:6]
+    keywords = Keyword.objects.all().order_by("kelime")[0:6]
+    campaings = Campaign.objects.all().order_by("-title")[0:6]
+    intagrams = Intagram.objects.all().order_by("-image_like_count")[0:6]
     form = NameForm()
     newlist=[]
     denemes = []
@@ -344,13 +365,16 @@ def HomePageView(request):
             else:
                 newlist1 = []
             context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models, 'newlist1': newlist1,
-                       'newlist': newlist,'blogs':blogs}
+                       'newlist': newlist,'blogs':blogs,
+                       'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
             return render(request, 'base.html', context)
         else:
-            context = {'blogs': blogs, 'form': form}
+            context = {'blogs': blogs, 'form': form,
+                       'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
             return render(request, 'home.html', context)
     else:
-        context = {'blogs':blogs,'form':form}
+        context = {'blogs':blogs,'form':form,
+                       'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
         return render(request, 'home.html', context)
 def profilpage(request):
     profil = UserModel.objects.filter(user=request.user)
@@ -376,3 +400,30 @@ def campaign(request):
     basedsite = Campaign.objects.all().order_by('site').filter(searchtimeblog=datetime.date.today())
     context= {'homelist':homelist,'basedsite':basedsite}
     return render(request, 'campaign.html', context)
+
+def urunsayfa(request, slug=UrunInput.kelimearama):
+    denemes = []
+    form1 = PostForm()
+    uruns = UrunInput.objects.filter(kelimearama=slug)
+    if request.user.is_authenticated:
+        models = UserModel.objects.filter(user=request.user)
+        for model in models:
+            denemes.append(model.serino)
+    else:
+        models = UserModel.objects.all()
+        for model in models:
+            denemes.append(model.serino)
+
+    if request.method == 'POST':
+        form1 = PostForm(request.POST)
+        if form1.is_valid():
+            if request.is_ajax():
+                post = form1.save(commit=False)
+                post.user = request.user
+                post.save()
+                return HttpResponse()
+    context= {'uruns':uruns,
+              'denemes':denemes,
+              'models':models,'form1':form1}
+    return render(request, 'input.html', context)
+

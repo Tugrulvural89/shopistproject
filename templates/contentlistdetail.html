@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Foruandme Ürün Arama Motoru</title>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+      <link rel="icon" href="{% static 'images/favicon.ico' %}">
+   </head>
+<body>
+      <nav class="navbar">
+        {% include 'include/nav.html' %}
+      </nav>
+
+<div class="cotainer">
+<div class="row">
+    {% for con in content %}
+            <div class="col-md-8" style="margin-left: auto;margin-right: auto">
+<ul style="list-style: none;
+        text-align: center;">
+    <li><h3>{{ con.title }}</h3></li>
+    <li><img style="width: 40%" src="{{ con.image }}"></li>
+    <li id="contentblog1">{{ con.content|linebreaks }}</li>
+    <li>{{ con.crontime }}</li>
+    <li>{{ con.site }}</li>
+</ul>
+
+
+            </div>
+{% endfor %}
+</div>
+</div>
+      <footer class="footer">
+         {% include 'include/footer.html' %}
+      </footer>
+</body>
+</html>

@@ -14,9 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
+from django.conf import settings
+from Shopist.sitemaps import ContentBlogSitemap, StaticViewSitemap
+
+sitemaps = {
+    'content': ContentBlogSitemap,
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
+    path('sitemap.xml',sitemap,{'sitemaps':sitemaps}),
     path('', include('Shopist.urls')),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
