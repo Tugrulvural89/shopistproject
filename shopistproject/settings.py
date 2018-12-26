@@ -24,6 +24,8 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
     'Shopist.apps.ShopistConfig',
     'bs4cron',
 ]
+SITE_ID = 1
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'HomePageView'
 LOGOUT_REDIRECT_URL = 'HomePageView'
@@ -60,6 +63,9 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
 WSGI_APPLICATION = 'shopistproject.wsgi.application'
  # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -69,6 +75,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
+
  # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
