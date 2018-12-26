@@ -20,22 +20,19 @@
       </nav>
 
 <div class="cotainer">
-<div class="row">
-    {% for con in content %}
             <div class="col-md-8" style="margin-left: auto;margin-right: auto">
 <ul style="list-style: none;
         text-align: center;">
-    <li><h3>{{ con.title }}</h3></li>
-    <li><img style="width: 40%" src="{{ con.image }}"></li>
-    <li id="contentblog1">{{ con.content|linebreaks }}</li>
-    <li>{{ con.crontime }}</li>
-    <li>{{ con.site }}</li>
+    <li><h3>{{ content.title }}</h3></li>
+    <li><img style="width: 40%" src="{{ content.image }}"></li>
+    <li id="contentblog1">{{ content.content|linebreaks }}</li>
+    <li>{{ content.crontime }}</li>
+    <li>{{ content.site }}</li>
 </ul>
 
 
             </div>
-{% endfor %}
-</div>
+
 </div>
       <footer class="footer">
          {% include 'include/footer.html' %}
