@@ -2,6 +2,13 @@
 {% load staticfiles %}
 <html lang="en">
    <head>
+       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3023241293141783",
+    enable_page_level_ads: true
+  });
+</script>
       <meta charset="UTF-8">
       <title>Foruandme Ürün Arama Motoru</title>
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -39,20 +46,20 @@
  {% endfor %}
 
     </div>
-            <div style="text-align: center" class="pagination">
+            <div style="text-align: center;margin-right: auto;margin-left: auto" class="pagination">
             <span class="step-links">
                 {% if contents.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ contents.previous_page_number }}">previous</a>
+                    <a href="?page=1">&laquo; İlk Sayfa</a>
+                    <a href="?page={{ contents.previous_page_number }}">Önceki</a>
                 {% endif %}
 
                 <span class="current">
-                    Page {{ contents.number }} of {{ contents.paginator.num_pages }}.
+                    Sayfa {{ contents.number }} of {{ contents.paginator.num_pages }}.
                 </span>
 
                 {% if contents.has_next %}
-                    <a href="?page={{ contents.next_page_number }}">next</a>
-                    <a href="?page={{ contents.paginator.num_pages }}">last &raquo;</a>
+                    <a href="?page={{ contents.next_page_number }}">Sonraki</a>
+                    <a href="?page={{ contents.paginator.num_pages }}">Son Sayfa &raquo;</a>
                 {% endif %}
             </span>
         </div>

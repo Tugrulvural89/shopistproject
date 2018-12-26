@@ -175,7 +175,7 @@ def index(request):
     return render(request, 'base.html', context)
 def contentblog(request):
     contents_list = ContentBlog.objects.all()
-    paginator = Paginator(contents_list, 6)
+    paginator = Paginator(contents_list, 12)
     page = request.GET.get('page')
     contents = paginator.get_page(page)
     context= {'contents':contents}
