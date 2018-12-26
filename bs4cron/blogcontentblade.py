@@ -58,6 +58,27 @@ for pm in range(1,2):
             "slug": urlata.split("/")[-2],
         })
 
+for pm in range(1,2):
+    pm = str(pm)
+    atasunurl = requests.get("http://blog.sateen.com/page/" + pm + "/")
+    ataxlm = BeautifulSoup(atasunurl.content, "lxml")
+    atacss = ataxlm.find('div', class_="content content-home")
+    atasuncontent = atacss.find_all("h2", class_="title entry-title")
+    for contentata in atasuncontent:
+        urlata = contentata.find('a').attrs['href']
+        ata = requests.get(urlata)
+        atas = BeautifulSoup(ata.content, "lxml")
+        atasun = atas.find('div', class_="content")
+        sitecontent.append({
+            "title": atasun.find('h1', class_="title entry-title").get_text(),
+            "image": atasun.find('img', class_="attachment-featured size-featured wp-post-image").get('src'),
+            "content": atasun.find('div', class_="post-content entry-content single-post-content").get_text().strip(),
+            "site": "saaten",
+            "slug": (urlata.split("/")[-2]).split(".")[0],
+        })
+
+
+
 
 
 for objectitem in sitecontent:
