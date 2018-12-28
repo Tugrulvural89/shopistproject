@@ -26,7 +26,7 @@ def index(request):
                 post.user = request.user
                 usermaile = form1.cleaned_data['email']
                 send_mail('Yeni Ürün Takibe Alındı!',
-                          'Fiyatlarla İlgili detaylara profil sayfan ulaşabilirsin. ürün indirime girdiğinde seni haberdar edeceğiz.',
+                          'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. ürün indirime girdiğinde ilk seni haberdar edeceğiz:)',
                           'tugrulv89@foruandme.com', ['{0}'.format(usermaile)],
                           fail_silently=False)
                 post.save()
