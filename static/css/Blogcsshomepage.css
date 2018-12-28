@@ -170,8 +170,8 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     }
     .forminput {
         width: 40%;
-        border-radius: 20px;
-        border:solid 1px;
+        border-radius: 10px;
+        border:solid 3px grey;
         text-align: center;
     }
     .bg {
@@ -305,8 +305,8 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     }
     .forminput {
         width: 100%;
-        border-radius: 20px;
-        border:solid 1px;
+        border-radius: 10px;
+        border:solid 3px grey;
         text-align: center;
     }
     .bg {

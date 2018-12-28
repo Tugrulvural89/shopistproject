@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog
 from operator import itemgetter
 import datetime
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 import pytz
 import random
@@ -15,7 +16,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 def index(request):
     newlist=[]
     denemes = []
-    intagrams = Intagram.objects.all().order_by("-image_like_count")[1:4]
+    intagrams = Intagram.objects.all().order_by("-image_like_count")[1:3]
     if request.method == 'POST':
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
@@ -23,6 +24,11 @@ def index(request):
             if request.is_ajax():
                 post = form1.save(commit=False)
                 post.user = request.user
+                usermaile = form1.cleaned_data['email']
+                send_mail('Yeni Ürün Takibe Alındı!',
+                          'Fiyatlarla İlgili detaylara profil sayfan ulaşabilirsin. ürün indirime girdiğinde seni haberdar edeceğiz.',
+                          'tugrulv89@foruandme.com', ['{0}'.format(usermaile)],
+                          fail_silently=False)
                 post.save()
                 return HttpResponse()
         if form.is_valid():
