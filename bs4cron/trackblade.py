@@ -23,7 +23,7 @@ for obj in objects:
         newhm = sourcehm.find('span',class_="price-value")
         if newhm:
             newhmr = sourcehm.find('span',class_="price-value").get_text().strip().replace('TL','').replace(',', '').replace('.', '')
-            pricedisplay = sourcehm.find('span',class_="price-value").get_text()
+            pricedisplay = sourcehm.find('span',class_="price-value").get_text().strip()
         else:
             newhmr = "0"
             pricedisplay = "0"
@@ -45,7 +45,7 @@ for obj in objects:
         newtr = sourcetr.find(class_="sale-price")
         if newtr:
             newtr = sourcetr.find(class_="sale-price").get_text().strip().replace('TL', '').replace(',', '').replace('.', '')
-            pricedisplay = sourcetr.find(class_="sale-price").get_text()
+            pricedisplay = sourcetr.find(class_="sale-price").get_text().strip()
         else:
             newtr = "0"
             pricedisplay = "0"
@@ -67,7 +67,7 @@ for obj in objects:
         newbrs = sourceboyners.find(class_='price-item')
         if newbrs:
             newbrsr = newbrs.find('ins').get_text().strip().replace('TL','').replace(',', '').replace('.', '')
-            pricedisplay = newbrs.find('ins').get_text()
+            pricedisplay = newbrs.find('ins').get_text().strip()
         else:
             newbrsr = "0"
             pricedisplay = "0"
@@ -89,7 +89,7 @@ for obj in objects:
         newmrp = sourcemrpobj.find(class_="final-price text-danger")
         if newmrp:
             newmrpr = newmrp.find('strong').get_text().strip().replace('TL','').replace(',', '').replace('.', '')
-            pricedisplay = newmrp.find('strong').get_text()
+            pricedisplay = newmrp.find('strong').get_text().strip()
         else:
             newmrpr = "0"
             pricedisplay = "0"
@@ -112,7 +112,7 @@ for obj in objects:
         if newmrkfobj:
             newmrkfobjs = sourcemrkfobjobj.find(class_='display-inline-block', attrs={'data-pro-product-info':'sale_price'}).get_text()\
                 .strip().replace('TL', '').replace(',', '').replace('.', '')
-            pricedisplay = sourcemrkfobjobj.find(class_='display-inline-block', attrs={'data-pro-product-info':'sale_price'}).get_text()
+            pricedisplay = sourcemrkfobjobj.find(class_='display-inline-block', attrs={'data-pro-product-info':'sale_price'}).get_text().strip()
         else:
             newmrkfobjs = "0"
             pricedisplay = "0"
@@ -148,13 +148,13 @@ for objectitem in listsitem:
 #send_mail('sdasdadasd', 'asdasd', 'tugrulv89@foruandme.com', ['tugrulv89@gmail.com'], fail_silently=False)
 listsettrack = []
 for z in trackitems:
-    listsettrack.append(z.isim)
+    listsettrack.append(z.serinotrack)
 setlists = list(set(listsettrack))
 
 if len(setlists) > 0:
     for item in setlists:
         emaillist = []
-        tracks = Post.objects.filter(isim=item).order_by('-crontime')[0:2]
+        tracks = Post.objects.filter(serinotrack=item).order_by('-crontime')[0:2]
         for comp in tracks:
             emaillist.append([comp.track,[comp.user,comp.isim,comp.serinotrack,comp.track,comp.pricedisplay]])
         if emaillist[0][0] != emaillist[1][0]:
