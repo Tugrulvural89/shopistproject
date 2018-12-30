@@ -18,7 +18,7 @@ listsitem = []
 objects = UserModel.objects.all()
 for obj in objects:
     if 'HM' == obj.site:
-        hm = requests.get(obj.url)
+        hm = requests.get(obj.url, allow_redirects=False)
         sourcehm = BeautifulSoup(hm.content, "lxml")
         newhm = sourcehm.find('span',class_="price-value")
         if newhm:
@@ -40,7 +40,7 @@ for obj in objects:
             'email': obj.email,
             })
     if 'Trendyol' == obj.site:
-        tr = requests.get(obj.url)
+        tr = requests.get(obj.url, allow_redirects=False)
         sourcetr = BeautifulSoup(tr.content, "lxml")
         newtr = sourcetr.find(class_="sale-price")
         if newtr:
@@ -62,7 +62,7 @@ for obj in objects:
             'email': obj.email,
             })
     if 'Boyner' == obj.site:
-        rbs = requests.get(obj.url)
+        rbs = requests.get(obj.url, allow_redirects=False)
         sourceboyners = BeautifulSoup(rbs.content, "lxml")
         newbrs = sourceboyners.find(class_='price-item')
         if newbrs:
@@ -84,7 +84,7 @@ for obj in objects:
             'email': obj.email,
             })
     if 'Morhipo' == obj.site:
-        mrpobj = requests.get(obj.url)
+        mrpobj = requests.get(obj.url, allow_redirects=False)
         sourcemrpobj = BeautifulSoup(mrpobj.content, "lxml")
         newmrp = sourcemrpobj.find(class_="final-price text-danger")
         if newmrp:
@@ -106,7 +106,7 @@ for obj in objects:
             'email': obj.email,
             })
     if 'Markafoni' == obj.site:
-        mrkfobj = requests.get(obj.url)
+        mrkfobj = requests.get(obj.url, allow_redirects=False)
         sourcemrkfobjobj = BeautifulSoup(mrkfobj.content, "lxml")
         newmrkfobj = sourcemrkfobjobj.find(class_='display-inline-block', attrs={'data-pro-product-info':'sale_price'})
         if newmrkfobj:

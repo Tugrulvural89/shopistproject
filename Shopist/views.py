@@ -208,6 +208,11 @@ def HomePageView(request):
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
         if form1.is_valid():
+            usermaile = form1.cleaned_data['email']
+            send_mail('Yeni Ürün Takibe Alındı!',
+                      'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. ürün indirime girdiğinde ilk seni haberdar edeceğiz:)',
+                      'tugrulv89@foruandme.com', ['{0}'.format(usermaile)],
+                      fail_silently=False)
             if request.is_ajax():
                 post = form1.save(commit=False)
                 post.user = request.user
