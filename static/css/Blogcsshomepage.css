@@ -67,7 +67,6 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         border-bottom: solid 1px;
         border-color: #b3aeae;
         margin-bottom: 10px;
-        margin-top: 100px;
     }
 
     /* Navbar links */
@@ -184,7 +183,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 
       /* Center and scale the image nicely */
        position: relative;
-       opacity: 0.65;
+      /* opacity: 0.65;*/
        background-position: center;
        background-repeat: no-repeat;
        background-size: cover;
@@ -225,7 +224,6 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         border-bottom: solid 1px;
         border-color: #b3aeae;
         margin-bottom: 10px;
-        margin-top:100px;
     }
 
     /* Navbar links */
@@ -323,7 +321,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 
       /* Center and scale the image nicely */
        position: relative;
-       opacity: 0.65;
+       /* opacity: 0.65; */
        background-position: center;
        background-repeat: no-repeat;
        background-size: cover;
