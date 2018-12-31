@@ -16,7 +16,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 def index(request):
     newlist=[]
     denemes = []
-    intagrams = Intagram.objects.all().order_by("-image_like_count")[1:3]
+    intagrams = Intagram.objects.all().order_by("-image_like_count")[0:3]
     if request.method == 'POST':
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
@@ -167,7 +167,8 @@ def index(request):
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
             else:
                 newlist1 = []
-            context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,'newlist':newlist,'kelime':kelime}
+            context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,
+                       'newlist':newlist,'kelime':kelime}
             return render(request, 'base.html', context)
         else:
             form = NameForm()
