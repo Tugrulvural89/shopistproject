@@ -18,7 +18,7 @@ listsitem = []
 objects = UserModel.objects.all()
 for obj in objects:
     if 'HM' == obj.site:
-        hm = requests.get(obj.url, allow_redirects=False)
+        hm = requests.get(obj.url)
         sourcehm = BeautifulSoup(hm.content, "lxml")
         newhm = sourcehm.find('span',class_="price-value")
         if newhm:

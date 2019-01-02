@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html>
+<html lang="tr-TR">
 <head>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -36,8 +36,6 @@
 
 
 
-
-
 <div class="col-md-12">
 {% for profil in profils %}
     <p>Arama Kelimesi : <a target="_blank" href="{{ profil.url }}"><strong> {{ profil.keyword }}</strong></a></p>
@@ -52,26 +50,29 @@
 </div>
 
     <div style="margin: 150px;"></div>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>Ürün Adı</th>
-            <th>Sorgu Zamanı</th>
-            <th>Güncel Fiyatı</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for obj in tracks %}
-        <tr>
-            <td>{{ obj.isim }}</td>
-            <td>{{ obj.crontime }}</td>
-            <td>{{ obj.pricedisplay }}<span>TL</span></td>
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Sorgu Zamanı</th>
+                <th>Güncel Fiyatı</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for obj in tracks %}
+            <tr>
+                <td>{{ obj.isim }}</td>
+                <td>{{ obj.crontime }}</td>
+                <td>{{ obj.pricedisplay }}<span></span></td>
 
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
 </div>
+
 
 <footer class="footer">
             {% include 'include/footer.html' %}

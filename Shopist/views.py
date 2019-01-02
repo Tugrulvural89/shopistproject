@@ -190,8 +190,10 @@ def contentblog(request):
 
 def contentblogdetail(request, slug=ContentBlog.slug):
     content = get_object_or_404(ContentBlog, slug=slug)
+    contents = ContentBlog.objects.all()[0:3]
+    instagrams = Intagram.objects.all().order_by("-image_like_count")[0:3]
     #content = ContentBlog.objects.filter(slug=slug)[0:1]
-    context= {'content':content}
+    context= {'content':content,'contents':contents,'instagrams':instagrams}
     return render(request, 'contentlistdetail.html', context)
 
 
@@ -201,7 +203,6 @@ def HomePageView(request):
     contents = ContentBlog.objects.all()[0:6]
     keywords = Keyword.objects.all().order_by("kelime")[0:6]
     campaings = Campaign.objects.all().order_by("-title")[0:6]
-    intagrams = Intagram.objects.all().order_by("-image_like_count")[0:6]
     form = NameForm()
     newlist=[]
     denemes = []
@@ -378,13 +379,14 @@ def HomePageView(request):
                 newlist1 = []
             context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models, 'newlist1': newlist1,
                        'newlist': newlist,'blogs':blogs,
-                       'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
+                       'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}
             return render(request, 'base.html', context)
         else:
             context = {'blogs': blogs, 'form': form,
-                       'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
+                       'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}
             return render(request, 'home.html', context)
     else:
+        intagrams = Intagram.objects.all().order_by("-image_like_count")[0:6]
         context = {'blogs':blogs,'form':form,
                        'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
         return render(request, 'home.html', context)

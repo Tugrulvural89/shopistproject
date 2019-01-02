@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html lang="en">
+<html lang="tr-TR">
    <head>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -10,16 +10,23 @@
           enable_page_level_ads: true
      });
 </script>
-      <meta charset="UTF-8">
-      <title>Foruandme Ürün Arama Motoru</title>
+       <meta charset="UTF-8">
+        <title>{{ content.title }} - foruandme</title>
+       <meta name="keywords" content="fiyat, ucuz, ürün karşılaştırma, uygun, fiyat bulma, moda siteleri, online alışveriş, kampanyalar"/>
+       <meta name="description" content="internette aradığın ürünleri tek bir sitede aynı anda karşılaştır ve fiyat takibi yap! En güncel kampanyaları hemen keşfet!"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+       <link rel="canonical" href="http://foruandme.com/{{ content.slug }}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="EkZ-Pe4grEg4j1Md0cIINp2PfjzMxwO1c2buDVe_LlI" />
+
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+      <link rel="stylesheet" href="{% static 'css/contentdetail.css' %}">
       <link rel="icon" href="{% static 'images/favicon.ico' %}">
    </head>
 <body>
@@ -30,9 +37,10 @@
 <div class="cotainer">
             <div class="col-md-8" style="margin-left: auto;margin-right: auto">
 <ul style="list-style: none;
-        text-align: center;">
-    <li><h3>{{ content.title }}</h3></li>
-    <li><img style="width: 40%" src="{{ content.image }}"></li>
+        text-align: center;
+    padding: initial;">
+    <li><h1>{{ content.title }}</h1></li>
+    <li><img src="{{ content.image }}" title="{{ content.title }}" alt="{{ content.title }}"></li>
     <li id="contentblog1">{{ content.content|linebreaks }}</li>
     <li>{{ content.crontime }}</li>
     <li>{{ content.site }}</li>
@@ -40,7 +48,36 @@
 
 
             </div>
+<h3>Öne Çıkanlar</h3>
+    <div class="row">
 
+        {% for content in contents %}
+        <div class="col-md-4">
+            <ul>
+                <li><h2>{{ content.title }}</h2></li>
+                <li>{{ content.site }}</li>
+                <li>{{ content.crontime }}</li>
+                <li><img src="{{ content.image }}" title="{{ content.title }}" alt="{{ content.title }}"></li>
+
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+<h3>En Beğenilenler</h3>
+    <div class="row">
+        {% for ins in instagrams %}
+        <div class="col-md-4">
+               <ul>
+                  <a target="_blank" href="https://www.instagram.com/explore/tags/{{ ins.tagname }}">
+                      <li><h2>#{{ ins.tagname }}</h2></li>
+                     <li><img src="{{ ins.image_display_url }}"> </li>
+                     <li>Beğeni Sayısı : {{ ins.image_like_count }}</li>
+                      <li>{{ ins.image_comment|truncatewords:15 }}</li>
+                  </a>
+               </ul>
+        </div>
+        {% endfor %}
+    </div>
 </div>
       <footer class="footer">
          {% include 'include/footer.html' %}

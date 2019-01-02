@@ -25,10 +25,8 @@ footer {
     overflow: scroll;
 }
 
-ul:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,0.22);
 
-}
+
 ul img{
     width: 70%;
 }
