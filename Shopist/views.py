@@ -548,7 +548,7 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
             uyes = Uyelik(email=uyeform.cleaned_data['email'])
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
-                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.     foruandme Ekibi',
                       'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()

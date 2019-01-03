@@ -62,7 +62,7 @@ for obj in objects:
             'email': obj.email,
             })
     if 'Boyner' == obj.site:
-        rbs = requests.get(obj.url, allow_redirects=False)
+        rbs = requests.get(obj.url)
         sourceboyners = BeautifulSoup(rbs.content, "lxml")
         newbrs = sourceboyners.find(class_='price-item')
         if newbrs:
