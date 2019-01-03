@@ -147,6 +147,8 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .social_footer_ul li i {  width:20px; height:20px; text-align:center;}
 
 @media screen and (min-width: 768px) {
+
+    #mobilnav { display: none;}
     .forminput {
         width: 40%;
         border-radius: 20px;
@@ -168,6 +170,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     float: none;
     display: block;
   }
+  #navbar {display: none;}
   .forminput {
     width: 100%;
     border-radius: 20px;
@@ -178,5 +181,39 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         margin-left: 7px;
         margin-right: 7px;
    }
+      .topnav {
+      overflow: hidden;
+      background-color: #FFFFFF;
+      position: relative;
+      }
 
+    .topnav #myLinks {
+      display: none;
+    }
+
+    .topnav a {
+      color: #000000;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      display: block;
+    }
+
+    .topnav a.icon {
+      background: white;
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: white;
+    }
+
+    .active {
+      background-color: #FFFFFF;
+      color: white;
+    }
 }

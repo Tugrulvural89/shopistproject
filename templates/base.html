@@ -31,9 +31,9 @@
    </head>
    <body>
       <div>
-      <nav class="navbar">
+
         {% include 'include/nav.html' %}
-      </nav>
+
       <form action="" class="searchform" method="post">
          {% csrf_token %}
          <div>
@@ -83,7 +83,7 @@
                          <img src="{{ object.img }}"  title="{{ object.title }}" alt="{{ object.title }}">
                          <div class="w3-dropdown-content" style="width:100px"><br>
                             <img src="{{ object.img }}" alt="Norway" style="width:200%">
-                            <a href="{{ object.url }}" class="w3-border">Siteyi Ziyaret Et»</a>
+                            <a href="{{ object.url }}" rel="nofollow" class="w3-border">Siteyi Ziyaret Et»</a>
                          </div>
                       </div>
                    </li>
@@ -91,7 +91,7 @@
                    <li>Ürün Kodu: <strong>{{ object.serino }}</strong></li>
                    <li><span><strong>{{ object.title }}</strong></span></li>
                    <li><span><strong>{{ object.pricedisplay }} TL</strong></span></li>
-                   <li><span><a target="_blank" href="{{ object.url }}"><strong>Ürünü sitesinde incelemek için TIKLA</strong></a></span></li>
+                   <li><span><a target="_blank" href="{{ object.url }}" rel="nofollow"><strong>Ürünü sitesinde incelemek için TIKLA</strong></a></span></li>
                    <li>
                       <form method="post" action="" name="form1"  class="form1">
                          {% csrf_token %}

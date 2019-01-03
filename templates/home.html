@@ -29,9 +29,7 @@
    </head>
    <body>
 
-      <nav class="navbar">
         {% include 'include/nav.html' %}
-      </nav>
       <div>
           <img class="desktopd" src="{% static 'images/paralx.jpg' %}" title="foruandme" alt="foruandme">
           <img class="desktopm" src="{% static 'images/paralxm.jpeg' %}" title="foruandme" alt="foruandme">
@@ -75,7 +73,7 @@
             {% for x in blogs %}
             <div class="col-md-4">
                <ul>
-                  <a target="_blank" href="{{ x.url }}">
+                  <a target="_blank" href="{{ x.url }}" rel="nofollow">
                      <li>
                         <h5>{{ x.title }}</h5>
                      </li>
@@ -95,7 +93,7 @@
             {% for f in intagrams %}
             <div class="col-md-4">
                <ul>
-                  <a target="_blank" href="https://www.instagram.com/explore/tags/{{ f.tagname }}">
+                  <a target="_blank" href="https://www.instagram.com/explore/tags/{{ f.tagname }}" rel="nofollow">
                      <li>#{{ f.tagname }}</li>
                      <li><img src="{{ f.image_display_url }}" title="{{ f.tagname }}" alt="{{ x.tagname }}"> </li>
                      <li>Beğeni Sayısı : {{ f.image_like_count }}</li>

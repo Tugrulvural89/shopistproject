@@ -440,4 +440,3 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
               'denemes':denemes,
               'models':models,'form1':form1}
     return render(request, 'input.html', context)
-
