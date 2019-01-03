@@ -127,3 +127,10 @@ class ContentBlog(models.Model):
 
     def get_absolute_url(self):
         return reverse('contentblogdetail', args=[str(self.slug)])
+
+
+class Uyelik(models.Model):
+    email = models.EmailField(max_length=100, null=False)
+
+    def __str__(self):
+        return self.email

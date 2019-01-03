@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 import requests
 from bs4 import BeautifulSoup
-from .forms import NameForm, PostForm, DeleteForm
+from .forms import NameForm, PostForm, DeleteForm, UyeForm
 from django.http import HttpResponse
-from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog
+from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog, Uyelik
 from operator import itemgetter
 import datetime
 from django.core.mail import send_mail
@@ -20,14 +20,24 @@ def index(request):
     if request.method == 'POST':
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
         if form1.is_valid():
             if request.is_ajax():
                 post = form1.save(commit=False)
                 post.user = request.user
                 usermaile = form1.cleaned_data['email']
                 send_mail('Yeni Ürün Takibe Alındı!',
-                          'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. ürün indirime girdiğinde ilk seni haberdar edeceğiz:)',
-                          'tugrulv89@foruandme.com', ['{0}'.format(usermaile)],
+                          'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. Merak etme ürünün indirime girerse ilk seni haberdar edeceğiz:)',
+                          'tugrulv@foruandme.com', ['{0}'.format(usermaile)],
                           fail_silently=False)
                 post.save()
                 return HttpResponse()
@@ -168,24 +178,46 @@ def index(request):
             else:
                 newlist1 = []
             context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,
-                       'newlist':newlist,'kelime':kelime}
+                       'newlist':newlist,'kelime':kelime,'uyeform':uyeform}
             return render(request, 'base.html', context)
         else:
             form = NameForm()
             form1 = PostForm()
-        context = {'form': form,'form1': form1,'intagrams':intagrams}
+        uyeform = UyeForm()
+        context = {'form': form,'form1': form1,'intagrams':intagrams,'uyeform':uyeform}
         return render(request, 'base.html', context)
     else:
         form = NameForm()
         form1 = PostForm()
-    context = {'form': form, 'form1': form1,'intagrams':intagrams}
+        uyeform = UyeForm()
+    context = {'form': form, 'form1': form1,'intagrams':intagrams,'uyeform':uyeform}
     return render(request, 'base.html', context)
 def contentblog(request):
-    contents_list = ContentBlog.objects.all()
-    paginator = Paginator(contents_list, 12)
-    page = request.GET.get('page')
-    contents = paginator.get_page(page)
-    context= {'contents':contents}
+    if request.method == 'POST':
+        contents_list = ContentBlog.objects.all()
+        paginator = Paginator(contents_list, 12)
+        page = request.GET.get('page')
+        contents = paginator.get_page(page)
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
+
+        context = {'contents': contents,'uyeform':uyeform}
+        return render(request, 'contentlist.html', context)
+    else:
+        contents_list = ContentBlog.objects.all()
+        paginator = Paginator(contents_list, 12)
+        page = request.GET.get('page')
+        contents = paginator.get_page(page)
+        uyeform=UyeForm()
+        context= {'contents':contents,'uyeform':uyeform}
     return render(request, 'contentlist.html', context)
 
 def contentblogdetail(request, slug=ContentBlog.slug):
@@ -193,8 +225,24 @@ def contentblogdetail(request, slug=ContentBlog.slug):
     contents = ContentBlog.objects.all()[0:3]
     instagrams = Intagram.objects.all().order_by("-image_like_count")[0:3]
     #content = ContentBlog.objects.filter(slug=slug)[0:1]
-    context= {'content':content,'contents':contents,'instagrams':instagrams}
-    return render(request, 'contentlistdetail.html', context)
+
+    if request.method == 'POST':
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                     'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
+        context = {'content': content, 'contents': contents, 'instagrams': instagrams,'uyeform':uyeform}
+        return render(request, 'contentlistdetail.html', context)
+    else:
+        uyeform = UyeForm()
+        context = {'content': content, 'contents': contents, 'instagrams': instagrams,'uyeform':uyeform}
+        return render(request, 'contentlistdetail.html', context)
 
 
 def HomePageView(request):
@@ -204,16 +252,30 @@ def HomePageView(request):
     keywords = Keyword.objects.all().order_by("kelime")[0:6]
     campaings = Campaign.objects.all().order_by("-title")[0:6]
     form = NameForm()
+    uyeform = UyeForm()
     newlist=[]
     denemes = []
     if request.method == 'POST':
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
+
         if form1.is_valid():
+
+            uyeform = UyeForm()
             usermaile = form1.cleaned_data['email']
             send_mail('Yeni Ürün Takibe Alındı!',
                       'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. ürün indirime girdiğinde ilk seni haberdar edeceğiz:)',
-                      'tugrulv89@foruandme.com', ['{0}'.format(usermaile)],
+                      'tugrulv@foruandme.com', ['{0}'.format(usermaile)],
                       fail_silently=False)
             if request.is_ajax():
                 post = form1.save(commit=False)
@@ -221,6 +283,8 @@ def HomePageView(request):
                 post.save()
                 return HttpResponse()
         if form.is_valid():
+
+            uyeform = UyeForm()
             ck = Keyword(kelime=form.cleaned_data['your_name'], users=request.user,
                          sites=form.cleaned_data["countries"])
             ck.save()
@@ -377,23 +441,25 @@ def HomePageView(request):
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
             else:
                 newlist1 = []
-            context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models, 'newlist1': newlist1,
+            context = {'form': form, 'form1': form1,'uyeform':uyeform, 'denemes': denemes, 'models': models, 'newlist1': newlist1,
                        'newlist': newlist,'blogs':blogs,
                        'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}
             return render(request, 'base.html', context)
         else:
-            context = {'blogs': blogs, 'form': form,
+            context = {'blogs': blogs, 'form': form,'uyeform':uyeform,
                        'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}
             return render(request, 'home.html', context)
     else:
         intagrams = Intagram.objects.all().order_by("-image_like_count")[0:6]
-        context = {'blogs':blogs,'form':form,
+        uyeform = UyeForm()
+        context = {'blogs':blogs,'form':form,'uyeform':uyeform,
                        'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
         return render(request, 'home.html', context)
 def profilpage(request):
     profil = UserModel.objects.filter(user=request.user)
     if request.method == 'POST':
         form1 = DeleteForm(request.POST)
+        uyeform = UyeForm(request.POST)
         if form1.is_valid():
             deleteserino = form1.cleaned_data['deleteserino']
             if request.is_ajax():
@@ -403,22 +469,68 @@ def profilpage(request):
                 profil1 = UserModel.objects.filter(no=deleteserino)
                 profil1.delete()
                 return HttpResponse()
-    context= {'profil':profil}
-    return render(request, 'profilpage.html', context)
+
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
+        context = {'profil': profil,'uyeform':uyeform}
+        return render(request, 'profilpage.html', context)
+    else:
+        uyeform = UyeForm()
+        context= {'profil':profil,'uyeform':uyeform}
+        return render(request, 'profilpage.html', context)
 def post_detail(request, pk):
     tracks =Post.objects.filter(no=pk)
     profils = UserModel.objects.filter(no=pk)
-    return render(request, 'profildetailpage.html', {'tracks': tracks, 'profils': profils})
+    uyeform = UyeForm()
+    if request.method == 'POST':
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uye = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
+        return render(request, 'profildetailpage.html', {'tracks': tracks, 'profils': profils,'uyeform':uyeform})
+    else:
+        uyeform = UyeForm()
+        return render(request, 'profildetailpage.html', {'tracks': tracks, 'profils': profils,'uyeform':uyeform})
 def campaign(request):
     homelist = Campaign.objects.all().order_by('title').filter(searchtimeblog=datetime.date.today())
     basedsite = Campaign.objects.all().order_by('site').filter(searchtimeblog=datetime.date.today())
-    context= {'homelist':homelist,'basedsite':basedsite}
-    return render(request, 'campaign.html', context)
+    uyeform = UyeForm()
+    if request.method == 'POST':
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
+        context = {'homelist': homelist, 'basedsite': basedsite, 'uyeform': uyeform}
+        return render(request, 'campaign.html', context)
+    else:
+        uyeform = UyeForm()
+        context= {'homelist':homelist,'basedsite':basedsite,'uyeform':uyeform}
+        return render(request, 'campaign.html', context)
 
 def urunsayfa(request, slug=UrunInput.kelimearama):
     denemes = []
     form1 = PostForm()
     uruns = UrunInput.objects.filter(kelimearama=slug)
+    uyeform = UyeForm()
     if request.user.is_authenticated:
         models = UserModel.objects.filter(user=request.user)
         for model in models:
@@ -430,6 +542,16 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
 
     if request.method == 'POST':
         form1 = PostForm(request.POST)
+        uyeform = UyeForm(request.POST)
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+            uyeemail = uyeform.cleaned_data['email']
+            send_mail('Kaydın alındı. Teşekkürler!',
+                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
+                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      fail_silently=False)
+            uye.save()
         if form1.is_valid():
             if request.is_ajax():
                 post = form1.save(commit=False)
@@ -438,5 +560,5 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
                 return HttpResponse()
     context= {'uruns':uruns,
               'denemes':denemes,
-              'models':models,'form1':form1}
+              'models':models,'form1':form1, 'uyeform':uyeform}
     return render(request, 'input.html', context)

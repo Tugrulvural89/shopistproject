@@ -28,12 +28,12 @@
           <h5 class="headin5_amrc col_white_amrc pt2">Siteler</h5>
           <!--headin5_amrc-->
           <ul class="footer_ul_amrc">
-             <li><a href="#">H&M</a></li>
-             <li><a href="#">Markafoni</a></li>
-             <li><a href="#">Boyner</a></li>
-             <li><a href="#">Trendyol</a></li>
-             <li><a href="#">Morhipo</a></li>
-             <li><a href="#">Daha fazlası..</a></li>
+             <li><a href="http://www.foruandme.com/arama/">H&M</a></li>
+             <li><a href="http://www.foruandme.com/arama/">Markafoni</a></li>
+             <li><a href="http://www.foruandme.com/arama/">Boyner</a></li>
+             <li><a href="http://www.foruandme.com/arama/">Trendyol</a></li>
+             <li><a href="http://www.foruandme.com/arama/">Morhipo</a></li>
+             <li><a href="http://www.foruandme.com/arama/">Daha fazlası..</a></li>
           </ul>
           <!--footer_ul_amrc ends here-->
        </div>
@@ -41,18 +41,17 @@
           <h5 class="headin5_amrc col_white_amrc pt2">Takip Et</h5>
           <!--headin5_amrc ends here-->
           <ul class="footer_ul2_amrc">
+                <li>
+                    <p>Email adresini bırak. Hemen abone ol!</p>
+                </li>
+                 <li>
+                    <p>Fırsatlar ve indirimlerden anında haberin olsun!</p>
+                </li>
              <li>
-                <a href="#"><i class="fa fa-twitter fleft padding-right"></i> </a>
-                <p>Fiyatlara anında ulaş...<a href="#">www.foruandme.com</a></p>
+                <form  action=""  method="post" style="color: white">{% csrf_token %}{{ uyeform }}<button style="margin-left: 5px;" type="submit">Gönder</button></form>
+
              </li>
-             <li>
-                <a href="#"><i class="fa fa-twitter fleft padding-right"></i> </a>
-                <p>Son çıkan kampayalardan haberin olsun...<a href="#">www.foruandme.com</a></p>
-             </li>
-             <li>
-                <a href="#"><i class="fa fa-twitter fleft padding-right"></i> </a>
-                <p>Bütün sitelere tek panelden eriş...<a href="#">www.foruandme.com</a></p>
-             </li>
+
           </ul>
           <!--footer_ul2_amrc ends here-->
        </div>
@@ -68,12 +67,12 @@
        <li><a href="{% url 'index' %}">Arama Yap</a></li>
     </ul>
     <!--foote_bottom_ul_amrc ends here-->
-    <p class="text-center">Copyright @2019 | Designed With by tugrul vural<a href="#"> Lookupprice</a></p>
+    <p class="text-center">Copyright @2019 | Designed With by tugrul vural<a href="{% url 'HomePageView' %}"> Lookupprice.com iştiraki</a></p>
     <ul class="social_footer_ul">
-       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-       <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+       <li><a target="_blank" href="https://www.facebook.com/Lookupprice/"><i class="fa fa-facebook"></i></a></li>
+       <li><a target="_blank" href="https://twitter.com/lookupprice"><i class="fa fa-twitter"></i></a></li>
+       <li><a target="_blank" href="https://www.linkedin.com/in/kasim-tugrul-vural/"><i class="fa fa-linkedin"></i></a></li>
+       <li><a target="_blank" href="https://www.instagram.com/lookupprice/"><i class="fa fa-instagram"></i></a></li>
     </ul>
     <!--social_footer_ul ends here-->
  </div>

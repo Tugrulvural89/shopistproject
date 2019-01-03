@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, UserModel
+from .models import Post, UserModel, Uyelik
 from django.contrib.auth import get_user_model
 
 class NameForm(forms.Form):
@@ -36,6 +36,12 @@ class PostForm(ModelForm):
                    'email': forms.HiddenInput(),
                    }
 
+class UyeForm(ModelForm):
+    #usermodel oluşturulup customuser managerden foreing key olarak çekildi.
+    #itemi sadece form olarak html üzerinden hidden alıyoruz.
+    class Meta:
+        model = Uyelik
+        fields = ['email']
 
 class DeleteForm(forms.Form):
     deleteserino = forms.CharField(label='deleteserino', max_length=100)

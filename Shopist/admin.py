@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog
+from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog, Uyelik
 
 
 
@@ -46,3 +46,6 @@ class ContentBlogAdmin(admin.ModelAdmin):
 admin.site.register(ContentBlog, ContentBlogAdmin)
 
 
+class UyelikAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Uyelik, UyelikAdmin)

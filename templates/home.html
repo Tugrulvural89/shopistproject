@@ -49,12 +49,12 @@
       <div class="container">
                <div class="row">
             <div class="col-md-12">
-               <h5 style="margin-top: 10px;">Kampanyalar</h5>
+               <a href="{% url 'campaign' %}"><h5 style="margin-top: 10px;">Kampanyalar</h5></a>
             </div>
             {% for keyword in campaings %}
             <div class="col-md-4">
                <ul>
-                  <a target="_blank" href="{{ keyword.url }}">
+                  <a target="_blank" href="{{ keyword.url }}" rel="nofollow">
                      <li><i class="fa fa-bullhorn"></i>  {{ keyword.title }}</li>
                       <li>{{ keyword.site }}</li>
                   </a>
