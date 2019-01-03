@@ -49,6 +49,21 @@
       <div class="container">
                <div class="row">
             <div class="col-md-12">
+               <h5 style="margin-top: 10px;">Kampanyalar</h5>
+            </div>
+            {% for keyword in campaings %}
+            <div class="col-md-4">
+               <ul>
+                  <a target="_blank" href="{{ keyword.url }}">
+                     <li><i class="fa fa-bullhorn"></i>  {{ keyword.title }}</li>
+                      <li>{{ keyword.site }}</li>
+                  </a>
+               </ul>
+            </div>
+            {% endfor %}
+         </div>
+               <div class="row">
+            <div class="col-md-12">
                <h1 style="text-align: center">BLOG</h1>
             </div>
             {% for y in contents %}
@@ -103,21 +118,7 @@
             </div>
             {% endfor %}
          </div>
-         <div class="row">
-            <div class="col-md-12">
-               <h5 style="margin-top: 10px;">Kampanyalar</h5>
-            </div>
-            {% for keyword in campaings %}
-            <div class="col-md-4">
-               <ul>
-                  <a target="_blank" href="{{ keyword.url }}">
-                     <li><i class="fa fa-bullhorn"></i>  {{ keyword.title }}</li>
-                      <li>{{ keyword.site }}</li>
-                  </a>
-               </ul>
-            </div>
-            {% endfor %}
-         </div>
+
       </div>
       <footer class="footer">
          {% include 'include/footer.html' %}
