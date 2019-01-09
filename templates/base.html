@@ -3,13 +3,6 @@
 <html lang="tr-TR">
    <head>
 
-       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-3023241293141783",
-          enable_page_level_ads: true
-     });
-</script>
        <meta charset="UTF-8">
         <title>Foruandme - internetten alışveriş yapanlar için ürün arama motoru</title>
        <meta name="keywords" content="fiyat, ucuz, ürün karşılaştırma, uygun, fiyat bulma, moda siteleri, online alışveriş, kampanyalar"/>
@@ -34,34 +27,11 @@
 
         {% include 'include/nav.html' %}
 
-      <form action="" class="searchform" method="post">
-         {% csrf_token %}
-         <div>
-            <label for="id_your_name">Ürün Adı Girin</label></br>
-            <input class="forminput" type="text" onfocus="this.value=''" value="koton kadın lacivert mont"
-               name="your_name" maxlength="100" required="" id="id_your_name">
-            <input style="border-radius: 20px;" type="submit" class="btn btn-primary" value="Ürün Ara">
-         </div>
-         <div class="searchform-sites">
-            <label>Siteni Seç</label></br>
-            <span id="id_countries">
-               <label for="id_countries_0"><input type="checkbox" name="countries" value="Boyner" id="id_countries_0">
-               Boyner</label>
-               <label for="id_countries_1"><input type="checkbox" name="countries" value="HM" id="id_countries_1">
-               HM</label>
-               <label for="id_countries_2"><input type="checkbox" name="countries" value="Trendyol" id="id_countries_2">
-               Trendyol</label>
-               <!--<label for="id_countries_3"><input type="checkbox" name="countries" value="Zara" id="id_countries_3">
-                  Zara</label>-->
-               <label for="id_countries_4"><input type="checkbox" name="countries" value="Morhipo" id="id_countries_4">
-               Morhipo</label>
-               <!--<label for="id_countries_5"><input type="checkbox" name="countries" value="Network" id="id_countries_5">
-                  Network</label>-->
-               <label for="id_countries_6"><input type="checkbox" name="countries" value="Markafoni" id="id_countries_6">
-               Markafoni</label>
-            </span>
-         </div>
-      </form>
+         <div class="col-md-12">
+         <form action="" class="searchform" method="post">
+            {% include 'include/searchform.html' %}
+         </form>
+      </div>
       <div class="container">
           {% if form.is_valid %}
           <ul class="breadcrumb" style="margin: 20px;">

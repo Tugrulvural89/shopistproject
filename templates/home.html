@@ -2,13 +2,6 @@
 {% load staticfiles %}
 <html lang="tr-TR">
    <head>
-              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({
-                          google_ad_client: "ca-pub-3023241293141783",
-                          enable_page_level_ads: true
-                     });
-                </script>
 
         <meta charset="UTF-8">
 
@@ -61,10 +54,11 @@
                </ul>
             </div>
             {% endfor %}
+                   <div class="col-md-12" style="text-align: center;">  <a href="{% url 'campaign' %}"><i>Tüm kampanyalar için tıkla!</i></a></div>
          </div>
                <div class="row">
             <div class="col-md-12">
-               <h1 style="text-align: center">BLOG</h1>
+               <h1 style="text-align: center;margin: 10px;">BLOG</h1>
             </div>
             {% for y in contents %}
             <div class="col-md-4">
@@ -80,10 +74,11 @@
                </ul>
             </div>
             {% endfor %}
+             <div class="col-md-12" style="text-align: center;">  <a href="{% url 'contentblog' %}"><i style="text-align: center;">Tüm içerikler için tıkla!</i></a></div>
          </div>
          <div class="row">
             <div class="col-md-12">
-               <h5>Diğerleri</h5>
+               <h5 style="margin-top: 10px;">Diğer İçerikler</h5>
             </div>
             {% for x in blogs %}
             <div class="col-md-4">
