@@ -12,6 +12,8 @@ import datetime
 import pytz
 
 
+
+
 class Keyword(models.Model):
     kelime = models.CharField(max_length=250, null=False)
     sites = models.CharField(max_length=250, null=True)
@@ -21,6 +23,29 @@ class Keyword(models.Model):
     def __str__(self):
         return self.kelime
 
+
+class SearchResult(models.Model):
+    no = models.AutoField(primary_key=True)
+    pricedisplay = models.CharField(max_length=250, null=True)
+    keyword = models.CharField(max_length=150, default="bilinmiyor")
+    title = models.CharField(max_length=150)
+    price = models.IntegerField()
+    site = models.CharField(max_length=150)
+    url = models.CharField(max_length=150)
+    searchtime = models.DateTimeField(default=timezone.now)
+    imageurl = models.CharField(max_length=450, unique=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+      on_delete=models.CASCADE, null=True
+    )
+    serino = models.CharField(max_length=150, unique=False)
+    email = models.CharField(max_length=250, null=True, default="tugrulv89@gmail.com")
+
+    def __str__(self):
+        return self.title
+
+
+    def __unicode__(self):
+        return self.title
 class Post(models.Model):
     isim = models.CharField(max_length=250, null=True)
     track = models.IntegerField()

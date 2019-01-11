@@ -1,10 +1,12 @@
 {% block nav %}
 
     {% csrf_token %}
+
 <div>
-    <label for="id_your_name"><h3>İnternette aradığın bütün ürünlere tek bir siteden ulaş<br>İndirimli fiyat ve kampanyaları anında yakala!</h3></label></br>
-   <input class="forminput" type="text" onfocus="this.value=''" value="Hayal Ettiğin Ürünü Hemen Ara!"
-      name="your_name" maxlength="100" required="" id="id_your_name">
+   <label for="id_your_name"> {% if form.is_valid %}{% else %}<h3>İnternette aradığın tüm ürünleri buradan bulabilirsin</h3>{% endif %}</label></br>
+   {% if form.is_valid %}<input class="forminput" type="text" onfocus="this.value=''" value="{{ form.your_name.value }}"
+      name="your_name" maxlength="100" required="" id="id_your_name">{% else %}<input class="forminput" type="text" onfocus="this.value=''" value="Hayallerindeki Ürünü Ara!"
+      name="your_name" maxlength="100" required="" id="id_your_name">{% endif %}
 </div>
 <div class="searchform-sites">
    <label>Siteni Seçmeyi Unutma:</label></br>
@@ -23,7 +25,14 @@
          Network</label>-->
       <label for="id_countries_6"><input type="checkbox" name="countries" value="Markafoni" id="id_countries_6">
       Markafoni</label>
-   </span>
+   </span><br>
+<select name="sira" id="id_sira">
+      <option value="3">Sana En Uygun</option>
+  <option value="1">Pahalıdan Ucuza</option>
+
+  <option value="2">Ucuzdan Pahalıya</option>
+
+</select>
 </div>
 <input style="border-radius: 20px;" type="submit" class="btn btn-primary" value="Ürün Ara">
 {% endblock %}

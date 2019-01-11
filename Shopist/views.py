@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 import requests
 from bs4 import BeautifulSoup
-from .forms import NameForm, PostForm, DeleteForm, UyeForm
+from .forms import NameForm, PostForm, DeleteForm, UyeForm, PriceForm
 from django.http import HttpResponse
-from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog, Uyelik
+from .models import Post, UserModel, Blogs, Campaign, Keyword, UrunInput, Intagram, ContentBlog, Uyelik, SearchResult
 from operator import itemgetter
 import datetime
 from django.core.mail import send_mail
@@ -12,8 +12,10 @@ import pytz
 import random
 from django.core.paginator import Paginator
 from django.shortcuts import get_list_or_404, get_object_or_404
+from django.core import serializers
 # Create your views here.
 def index(request):
+    newlist = SearchResult.objects.all()
     newlist=[]
     denemes = []
     intagrams = Intagram.objects.all().order_by("-image_like_count")[0:3]
@@ -21,6 +23,7 @@ def index(request):
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
         uyeform = UyeForm(request.POST)
+        sortedForm = PriceForm(request.POST)
         if uyeform.is_valid():
             uye = uyeform.save(commit=False)
             uyes = Uyelik(email=uyeform.cleaned_data['email'])
@@ -47,6 +50,7 @@ def index(request):
             ck.save()
             kelime = form.cleaned_data['your_name']
             sites = form.cleaned_data["countries"]
+            siras = form.cleaned_data["sira"]
             if request.user.is_authenticated:
                 models = UserModel.objects.filter(user=request.user)
                 for model in models:
@@ -175,22 +179,30 @@ def index(request):
                     })
             if len(newlist) >= 1:
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
-            else:
-                newlist1 = []
+            if siras == "1":
+                newlist = sorted(newlist, key=itemgetter('price'), reverse=True)
+            if siras =="2":
+                newlist = sorted(newlist, key=itemgetter('price'), reverse=False)
+            if siras =="2":
+                newlist = newlist
+
             context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,
-                       'newlist':newlist,'kelime':kelime,'uyeform':uyeform}
+                       'newlist':newlist,'kelime':kelime,'uyeform':uyeform,'sortedForm':sortedForm}
             return render(request, 'base.html', context)
+
         else:
             form = NameForm()
             form1 = PostForm()
-        uyeform = UyeForm()
-        context = {'form': form,'form1': form1,'intagrams':intagrams,'uyeform':uyeform}
+            uyeform = UyeForm()
+            sortedForm = PriceForm()
+        context = {'form': form,'form1': form1,'intagrams':intagrams,'uyeform':uyeform,'sortedForm':sortedForm}
         return render(request, 'base.html', context)
     else:
         form = NameForm()
         form1 = PostForm()
         uyeform = UyeForm()
-    context = {'form': form, 'form1': form1,'intagrams':intagrams,'uyeform':uyeform}
+        sortedForm = PriceForm()
+    context = {'form': form, 'form1': form1,'intagrams':intagrams,'uyeform':uyeform,'sortedForm':sortedForm}
     return render(request, 'base.html', context)
 def contentblog(request):
     if request.method == 'POST':
@@ -562,3 +574,99 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
               'denemes':denemes,
               'models':models,'form1':form1, 'uyeform':uyeform}
     return render(request, 'input.html', context)
+
+
+def testtest(request, slug=UrunInput.kelimearama):
+    denemes = []
+
+    serialized_queryset = serializers.serialize('json',
+                                                UrunInput.objects.filter(kelimearama=slug))
+    if request.user.is_authenticated:
+        models = UserModel.objects.filter(user=request.user)
+        for model in models:
+            denemes.append(model.serino)
+    else:
+        models = UserModel.objects.all()
+        for model in models:
+            denemes.append(model.serino)
+    if request.method == 'GET':
+        form = NameForm()
+        form1 = PostForm()
+        uyeform = UyeForm()
+        test123 = PriceForm()
+        denemes = []
+
+        serialized_queryset = serializers.serialize('json',
+                                                    UrunInput.objects.filter(kelimearama=slug))
+        if request.user.is_authenticated:
+            models = UserModel.objects.filter(user=request.user)
+            for model in models:
+                denemes.append(model.serino)
+        else:
+            models = UserModel.objects.all()
+            for model in models:
+                denemes.append(model.serino)
+        pricesortbigs = UrunInput.objects.filter(kelimearama=slug).order_by("price")
+        pricesortsmalls = UrunInput.objects.filter(kelimearama=slug).order_by("-price")
+        uruns = UrunInput.objects.filter(kelimearama=slug)
+        serialized_queryset = serializers.serialize('json',
+                                                    UrunInput.objects.filter(kelimearama=slug))
+
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        form1 = PostForm(request.POST)
+        uyeform = UyeForm(request.POST)
+        test123 = PriceForm(request.POST)
+        if form1.is_valid():
+            post = form1.save(commit=False)
+            post.user = request.user
+            post.save()
+        if request.user.is_authenticated:
+            models = UserModel.objects.filter(user=request.user)
+            for model in models:
+                denemes.append(model.serino)
+        else:
+            models = UserModel.objects.all()
+            for model in models:
+                denemes.append(model.serino)
+    if request.user.is_authenticated:
+        models = UserModel.objects.filter(user=request.user)
+        for model in models:
+            denemes.append(model.serino)
+        else:
+            models = UserModel.objects.all()
+            for model in models:
+                denemes.append(model.serino)
+
+        pricesortbigs = UrunInput.objects.filter(kelimearama=slug).order_by("price")
+        pricesortsmalls = UrunInput.objects.filter(kelimearama=slug).order_by("-price")
+        uruns = UrunInput.objects.filter(kelimearama=slug)
+        serialized_queryset = serializers.serialize('json',
+                                                   UrunInput.objects.filter(kelimearama=slug))
+
+        if uyeform.is_valid():
+            uye = uyeform.save(commit=False)
+            uyes = Uyelik(email=uyeform.cleaned_data['email'])
+
+            uye.save()
+        if test123.is_valid():
+            filter_category = test123.cleaned_data['Countries']
+            if filter_category == "1":
+                uruns = UrunInput.objects.filter(kelimearama=slug).order_by("-price")
+
+                context = {'denemes': denemes, 'uruns': uruns, 'serialized_queryset': serialized_queryset,
+                           'models': models, 'test123': test123, 'form': form, 'form1': form1,
+                           'pricesortbigs': pricesortbigs, 'pricesortsmalls': pricesortsmalls}
+                return render(request, 'test.html', context)
+            else:
+                uruns = UrunInput.objects.filter(kelimearama=slug).order_by("price")
+
+                context = {'denemes': denemes, 'uruns': uruns, 'serialized_queryset': serialized_queryset,
+                           'models': models, 'test123': test123, 'form': form, 'form1': form1,
+                           'pricesortbigs': pricesortbigs, 'pricesortsmalls': pricesortsmalls}
+                return render(request, 'test.html', context)
+
+
+    context= {'denemes':denemes,'uruns':uruns,'serialized_queryset':serialized_queryset,
+              'models':models,'test123':test123,'form':form,'form1':form1,'pricesortbigs':pricesortbigs,'pricesortsmalls':pricesortsmalls}
+    return render(request, 'test.html', context)

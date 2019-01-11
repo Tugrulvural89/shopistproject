@@ -33,7 +33,7 @@
          </form>
       </div>
       <div class="container">
-          {% if form.is_valid %}
+        {% if form.is_valid %}
           <ul class="breadcrumb" style="margin: 20px;">
              <li class="breadcrumb-item"><a href="#">Arama</a></li>
              <li class="breadcrumb-item"><a href="#">Siteler</a></li>
@@ -42,7 +42,7 @@
                 sonuç bulundu</strong>
              </li>
           </ul>
-          {% endif %}
+            {% endif %}
           <div class="row">
             {% if form.is_valid %}
              {% for object in newlist %}
@@ -100,8 +100,7 @@
                  {% empty %}
                  <h3 style="text-align: center">Aradığın ürün bulunamadı. Başka bir ürün aramaya nedersin? Daha çok sitede aramayı deneyebilirsin.</h3>
              {% endfor %}
-            {% endif %}
-
+          {% endif %}
                 {% for item in intagrams %}
              <div class="col-md-4">
              <a target="_blank" href="https://www.instagram.com/explore/tags/{{ item.tagname }}">
@@ -119,6 +118,7 @@
           </div>
       </div>
       </div>
+            <button onclick="topFunction()" id="myBtn" title="Geri Dön"><i class="fa fa-angle-double-up"></i></button>
       <footer class="footer">
          {% include 'include/footer.html' %}
       </footer>
@@ -170,4 +170,22 @@
 
       })
    </script>
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
 </html>

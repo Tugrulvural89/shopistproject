@@ -18,6 +18,14 @@ class NameForm(forms.Form):
     countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                           choices=OPTIONS,required=True)
 
+    OPTIONS1 = (
+        ("3", "Sana En Uygun"),
+        ("2", "Ucuzdan Pahalıya"),
+        ("1", "Pahalıdan Ucuza"),
+    )
+    sira = forms.ChoiceField(choices=OPTIONS1, label="",required=False)
+
+
 class PostForm(ModelForm):
     #usermodel oluşturulup customuser managerden foreing key olarak çekildi.
     #itemi sadece form olarak html üzerinden hidden alıyoruz.
@@ -50,12 +58,9 @@ class DeleteForm(forms.Form):
 
 
 
-
 class PriceForm(forms.Form):
         OPTIONS = (
-            ("AUT", "Austria"),
-            ("DEU", "Germany"),
-            ("NLD", "Neitherlands"),
+            ("1", "Pahalıdan Ucuza"),
+            ("2", "Ucuzdan Pahalıya"),
         )
-        Countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                              choices=OPTIONS)
+        sira = forms.ChoiceField(choices=OPTIONS, label="")
