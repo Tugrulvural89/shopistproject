@@ -302,6 +302,7 @@ def HomePageView(request):
             ck.save()
             kelime = form.cleaned_data['your_name']
             sites = form.cleaned_data["countries"]
+            siras = form.cleaned_data['sira']
             if request.user.is_authenticated:
                 models = UserModel.objects.filter(user=request.user)
                 for model in models:
@@ -451,8 +452,12 @@ def HomePageView(request):
                     })
             if len(newlist) >= 1:
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
-            else:
-                newlist1 = []
+            if siras == "1":
+                newlist = sorted(newlist, key=itemgetter('price'), reverse=True)
+            if siras == "2":
+                newlist = sorted(newlist, key=itemgetter('price'), reverse=False)
+            if siras == "2":
+                newlist = newlist
             context = {'form': form, 'form1': form1,'uyeform':uyeform, 'denemes': denemes, 'models': models, 'newlist1': newlist1,
                        'newlist': newlist,'blogs':blogs,
                        'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}

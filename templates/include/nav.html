@@ -13,15 +13,21 @@
  </div>
  <div class="navbarright">
     {% if user.is_authenticated %}
-    <a href="{% url 'profilpage' %}" user=user.id>Merhaba {{ user.username }}</a>
-    <a href="{% url 'logout' %}">Log out</a>
-    <a href="{% url 'password_reset' %}">reset password</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Merhaba {{ user.username }}
+        </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" href="{% url 'logout' %}">Çıkış Yap</a>
+    <a class="dropdown-item" href="{% url 'password_reset' %}">Şifreni Sıfırla</a>
+        </div>
+        </li>
     {% else %}
     <a href="{% url 'signup' %}">Üye Ol</a>
     <a href="{% url 'login' %}">Giriş Yap</a>
     {% endif %}
 
- </div>
+
     </nav>
 
     <nav id="mobilnav">
@@ -38,7 +44,8 @@
     {% endif %}
       {% if user.is_authenticated %}
     <a href="{% url 'profilpage' %}" user=user.id>Merhaba {{ user.username }}</a>
-    <a href="{% url 'logout' %}">Log out</a>
+    <a href="{% url 'logout' %}">Çıkış Yap</a>
+              <a href="{% url 'password_reset' %}">Şifreni Sıfırla</a>
     {% else %}
     <a href="{% url 'signup' %}">Üye Ol</a>
     <a href="{% url 'login' %}">Giriş Yap</a>

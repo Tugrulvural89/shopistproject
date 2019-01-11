@@ -80,16 +80,16 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         display: none;
     }
     /* Style the navigation bar */
-    .navbar {;
+    .navbar {
         display: flex;
         font-family: 'Poppins', serif;
         font-style: normal;
         width: 100%;
         background-color: #fff;
-        overflow: auto;
         border-bottom: solid 1px;
         border-color: #b3aeae;
         margin-bottom: 10px;
+        list-style: none;
     }
 
     /* Navbar links */
@@ -248,7 +248,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     display: block;
     }
     /* Style the navigation bar */
-    .navbar {;
+    .navbar {
         display: flex;
         font-family: 'Poppins', serif;
         font-style: normal;

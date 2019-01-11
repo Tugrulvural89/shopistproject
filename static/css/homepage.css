@@ -55,45 +55,7 @@ div a:hover {
 
 
 /* Style the navigation bar */
-.navbar {;
-    display: flex;
-    font-family: 'Poppins', serif;
-    font-style: normal;
-    width: 100%;
-    background-color: #fff;
-    overflow: auto;
-    border-bottom: solid 1px;
-    border-color: #b3aeae;
-    margin-bottom: 10px;
-}
 
-/* Navbar links */
-.navbar a {
-  text-align: center;
-  padding: 12px;
-  color: black;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-/* Navbar links on mouse-over */
-.navbar a:hover {
-  background-color: #fff;
-}
-
-/* Navbar major item center */
-.activefirst{
-    margin: auto;
-    text-align: center;
-}
-/* Current/active navbar link */
-
-/* Navbar usericon right items */
-.navbarright{
-    float: right;
-    padding-right: 70px;
-    display: flex;
-}
 #myBtn {
   display: none;
   position: fixed;
@@ -180,6 +142,45 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
         margin-left: 7px;
         margin-right: 7px;
     }
+    .navbar {
+    display: flex;
+    font-family: 'Poppins', serif;
+    font-style: normal;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: solid 1px;
+    border-color: #b3aeae;
+    margin-bottom: 10px;
+    list-style: none;
+    }
+
+    /* Navbar links */
+    .navbar a {
+      text-align: center;
+      padding: 12px;
+      color: black;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    /* Navbar links on mouse-over */
+    .navbar a:hover {
+      background-color: #fff;
+    }
+
+    /* Navbar major item center */
+    .activefirst{
+        margin: auto;
+        text-align: center;
+    }
+    /* Current/active navbar link */
+
+    /* Navbar usericon right items */
+    .navbarright{
+        float: right;
+        padding-right: 70px;
+        display: flex;
+    }
 }
 
 
@@ -236,6 +237,45 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     .active {
       background-color: #FFFFFF;
       color: white;
+    }
+    .navbar {
+    display: flex;
+    font-family: 'Poppins', serif;
+    font-style: normal;
+    width: 100%;
+    background-color: #fff;
+    overflow: auto;
+    border-bottom: solid 1px;
+    border-color: #b3aeae;
+    margin-bottom: 10px;
+    }
+
+    /* Navbar links */
+    .navbar a {
+      text-align: center;
+      padding: 12px;
+      color: black;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    /* Navbar links on mouse-over */
+    .navbar a:hover {
+      background-color: #fff;
+    }
+
+    /* Navbar major item center */
+    .activefirst{
+        margin: auto;
+        text-align: center;
+    }
+    /* Current/active navbar link */
+
+    /* Navbar usericon right items */
+    .navbarright{
+        float: right;
+        padding-right: 70px;
+        display: flex;
     }
 
 }
