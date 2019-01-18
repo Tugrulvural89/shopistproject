@@ -25,72 +25,76 @@
    </head>
    <style>
        @media screen and (min-width: 768px) {
-    #srpformmo {display: none;}ul {list-style-type: none;}  {% if form_is.valid %}{% else %}
+        #srpformmo {display: none;}
+        ul {list-style-type: none;}
+       {% if form.is_valid %}
 
-    form img {border-radius: 20px;}
+       {% else %}
 
-form li {
-  display: inline-block;
-}
+            form img {border-radius: 20px;}
 
-input[type="checkbox"][id^="id_countries_"] {
-  display: none;
-}
+            form li {
+              display: inline-block;
+            }
 
-form label {
-  border: 1px solid #fff;
-  padding: 10px;
-  display: block;
-  position: relative;
-  margin: 10px;
-  cursor: pointer;
-}
+            input[type="checkbox"][id^="id_countries_"] {
+              display: none;
+            }
 
-footer label {
-  border: 0px solid #fff;
-}
+            form label {
+              border: 1px solid #fff;
+              padding: 10px;
+              display: block;
+              position: relative;
+              margin: 10px;
+              cursor: pointer;
+            }
 
-label:before {
-  background-color: white;
-  color: white;
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  border: 1px solid grey;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  line-height: 28px;
-  transition-duration: 0.4s;
-  transform: scale(0);
-}
+            footer label {
+              border: 0px solid #fff;
+            }
 
-label img {
-  height: 100px;
-  width: 100px;
-  transition-duration: 0.2s;
-  transform-origin: 50% 50%;
-}
+            label:before {
+              background-color: white;
+              color: white;
+              content: " ";
+              display: block;
+              border-radius: 50%;
+              border: 1px solid grey;
+              position: absolute;
+              top: -5px;
+              left: -5px;
+              width: 25px;
+              height: 25px;
+              text-align: center;
+              line-height: 28px;
+              transition-duration: 0.4s;
+              transform: scale(0);
+            }
 
-:checked + label {
-  border-color: #ddd;
-}
+            label img {
+              height: 100px;
+              width: 100px;
+              transition-duration: 0.2s;
+              transform-origin: 50% 50%;
+            }
 
-:checked + label:before {
-  content: "✓";
-  background-color: grey;
-  transform: scale(1);
-}
+            :checked + label {
+              border-color: #ddd;
+            }
 
-:checked + label img {
-  transform: scale(0.9);
-  box-shadow: 0 0 5px #333;
-  z-index: -1;
-}
-{% endif %}
+            :checked + label:before {
+              content: "✓";
+              background-color: grey;
+              transform: scale(1);
+            }
+
+            :checked + label img {
+              transform: scale(0.9);
+              box-shadow: 0 0 5px #333;
+              z-index: -1;
+            }
+            {% endif %}
 }
 @media screen and (max-width: 768px) {form label{  border: none;} #srpform {display: none;}}
        /*footer*/
@@ -146,7 +150,9 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
             {% include 'include/searchformmobile.html' %}
 
          </form>
-
+                  <div style="text-align: center;margin-top: 10px;" class="col-md-12">
+                  <i style="margin-left: auto;margin-right: auto;font-size: xx-large;text-align: center;" class="fa fa-angle-double-down"></i>
+                      </div>
         </div>
       <div class="container">
         {% if form.is_valid %}
