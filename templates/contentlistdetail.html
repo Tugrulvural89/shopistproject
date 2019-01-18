@@ -137,13 +137,14 @@
 <div class="col-md-4">
     <h5 style="text-align: center;">Öne Çıkanlar</h5>
             {% for content in contents %}
+                <a href="{% url 'contentblogdetail'  slug=content.slug %}">
             <ul>
                 <li><h5>{{ content.title }}</h5></li>
                 <li>{{ content.site }}</li>
                 <li>{{ content.crontime }}</li>
                 <li><img src="{{ content.image }}" title="{{ content.title }}" alt="{{ content.title }}"></li>
 
-            </ul>
+            </ul></a>
 
         {% endfor %}
 </div>
