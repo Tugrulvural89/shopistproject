@@ -31,7 +31,7 @@ def index(request):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
         if form1.is_valid():
@@ -41,7 +41,7 @@ def index(request):
                 usermaile = form1.cleaned_data['email']
                 send_mail('Yeni Ürün Takibe Alındı!',
                           'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. Merak etme ürünün indirime girerse ilk seni haberdar edeceğiz:)',
-                          'tugrulv@foruandme.com', ['{0}'.format(usermaile)],
+                          'noreply@foruandme.com', ['{0}'.format(usermaile)],
                           fail_silently=False)
                 post.save()
                 return HttpResponse()
@@ -260,7 +260,7 @@ def contentblog(request):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
 
@@ -288,7 +288,7 @@ def contentblogdetail(request, slug=ContentBlog.slug):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                      'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
         context = {'content': content, 'contents': contents, 'instagrams': instagrams,'uyeform':uyeform}
@@ -318,7 +318,7 @@ def HomePageView(request):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
 
@@ -326,7 +326,7 @@ def HomePageView(request):
             usermaile = form1.cleaned_data['email']
             send_mail('Yeni Ürün Takibe Alındı!',
                       'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. ürün indirime girdiğinde ilk seni haberdar edeceğiz:)',
-                      'tugrulv@foruandme.com', ['{0}'.format(usermaile)],
+                      'noreply@foruandme.com', ['{0}'.format(usermaile)],
                       fail_silently=False)
             if request.is_ajax():
                 post = form1.save(commit=False)
@@ -573,7 +573,7 @@ def profilpage(request):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
         context = {'profil': profil,'uyeform':uyeform}
@@ -594,7 +594,7 @@ def post_detail(request, pk):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
         return render(request, 'profildetailpage.html', {'tracks': tracks, 'profils': profils,'uyeform':uyeform})
@@ -613,7 +613,7 @@ def campaign(request):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
         context = {'homelist': homelist, 'basedsite': basedsite, 'uyeform': uyeform}
@@ -651,7 +651,7 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
             uyeemail = uyeform.cleaned_data['email']
             send_mail('Kaydın alındı. Teşekkürler!',
                       'Yeni ürünler ve içeriklerden sizleri düzenli olarak haberdar edeceğiz.     foruandme Ekibi',
-                      'tugrulv@foruandme.com', ['{0}'.format(uyeemail)],
+                      'noreply@foruandme.com', ['{0}'.format(uyeemail)],
                       fail_silently=False)
             uye.save()
         if form1.is_valid():
