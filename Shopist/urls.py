@@ -12,7 +12,7 @@ urlpatterns = [
     path('urun/<slug>/', views.urunsayfa, name='urunsayfa'),
     path('blog/', views.contentblog, name='contentblog'),
     path('blog/<slug>/', views.contentblogdetail, name='contentblogdetail'),
-    path('intagram/', views.inputtags, name='inputtags'),
+    path('instagram/', views.inputtags, name='inputtags'),
 ]
 
 

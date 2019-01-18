@@ -13,7 +13,7 @@ STATIC_DIR = os.path.join(BASE_DIR,  'static')
  # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
  # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qky$xd67eh==_&sjw*69c^nuyi70g5l&pz52@##&pr%g&ko2@b'
+SECRET_KEY = ''
  # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'robots',
     'users',
     'Shopist.apps.ShopistConfig',
     'bs4cron',
