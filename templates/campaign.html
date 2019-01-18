@@ -29,7 +29,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
-
+<style>
+    #populers {display: flex;}     #populers img {margin-left: auto;margin-right: auto;}
+</style>
 </head>
 <body>
 
@@ -82,7 +84,22 @@
 
 
 </div>
+        <div class="container">
+<h3 style="text-align: center;">Popüler Ürünler</h3>
+     <div class="col-md-12" id="populers">
 
+           <a href="https://www.foruandme.com/urun/atki"><h5>ATKI</h5>
+               <img src="{% static 'images/mostpopulerpages/atki.jpg' %}"></a>
+           <a href="https://www.foruandme.com/urun/kot"><h5>KOT</h5>
+               <img src="{% static 'images/mostpopulerpages/jeans.jpg' %}"></a>
+                    <a href="https://www.foruandme.com/urun/saat"><h5>SAAT</h5>
+               <img src="{% static 'images/mostpopulerpages/saat.jpg' %}"></a>
+                    <a href="https://www.foruandme.com/urun/bot"><h5>BOT</h5>
+               <img src="{% static 'images/mostpopulerpages/BOT.jpeg' %}"></a>
+
+
+     </div>
+            </div>
 <footer class="footer">
             {% include 'include/footer.html' %}
 </footer>

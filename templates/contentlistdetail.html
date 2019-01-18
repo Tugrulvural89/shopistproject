@@ -25,14 +25,85 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="{% static 'css/contentdetail.css' %}">
       <link rel="icon" href="{% static 'images/favicon.ico' %}">
+       <style type="text/css">
+
+/* container */
+
+#share {
+	width: 100%;
+  	margin: 100px auto;
+  	text-align: center;
+}
+
+/* buttons */
+
+#share a {
+	width: 50px;
+  	height: 50px;
+  	display: inline-block;
+  	margin: 8px;
+  	border-radius: 50%;
+  	font-size: 24px;
+  	color: #fff;
+	opacity: 0.75;
+	transition: opacity 0.15s linear;
+}
+
+#share a:hover {
+	opacity: 1;
+}
+
+/* icons */
+
+#share i {
+  	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
+
+/* colors */
+
+.facebook {
+ 	background: #3b5998;
+}
+
+.twitter {
+  	background: #55acee;
+}
+
+.googleplus {
+  	background: #dd4b39;
+}
+
+.linkedin {
+  	background: #0077b5;
+}
+
+.pinterest {
+  	background: #cb2027;
+}
+#populers {
+    display: flex;
+
+
+}
+#populers img {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+</style>
    </head>
 <body>
         {% include 'include/nav.html' %}
 <div class="cotainer">
-            <div class="col-md-8" style="margin-left: auto;margin-right: auto">
+    <div class="col-md-12">
+<div class="row">
+            <div class="col-md-8">
 <ul style="list-style: none;
         text-align: center;
     padding: initial;">
@@ -43,22 +114,44 @@
     <li>{{ content.site }}</li>
 </ul>
 
+<div id="share">
+
+  <!-- facebook -->
+  <a class="facebook" href="https://www.facebook.com/share.php?u={{ request.build_absolute_uri }}&title={{ content.title }}" target="blank"><i class="fa fa-facebook"></i></a>
+
+  <!-- twitter -->
+  <a class="twitter" href="https://twitter.com/intent/tweet?status={{ content.title }}+{{ request.build_absolute_uri }}" target="blank"><i class="fa fa-twitter"></i></a>
+
+  <!-- google plus -->
+  <a class="googleplus" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="blank"><i class="fa fa-google-plus"></i></a>
+
+  <!-- linkedin -->
+  <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ content.title }}&source={{ request.build_absolute_uri }}" target="blank"><i class="fa fa-linkedin"></i></a>
+
+  <!-- pinterest -->
+  <a class="pinterest" href="https://pinterest.com/pin/create/bookmarklet/?media={{ content.image }}&url={{ request.build_absolute_uri }}&is_video=false&description={{ content.title }}" target="blank"><i class="fa fa-pinterest-p"></i></a>
+
+</div>
 
             </div>
-<h3 style="text-align: center;">Öne Çıkanlar</h3>
-    <div class="row">
-
-        {% for content in contents %}
-        <div class="col-md-4">
+<div class="col-md-4">
+    <h5 style="text-align: center;">Öne Çıkanlar</h5>
+            {% for content in contents %}
             <ul>
-                <li><h2>{{ content.title }}</h2></li>
+                <li><h5>{{ content.title }}</h5></li>
                 <li>{{ content.site }}</li>
                 <li>{{ content.crontime }}</li>
                 <li><img src="{{ content.image }}" title="{{ content.title }}" alt="{{ content.title }}"></li>
 
             </ul>
-        </div>
+
         {% endfor %}
+</div>
+</div>
+    </div>
+    <div class="row">
+
+
     </div>
 <h3 style="text-align: center;">En Beğenilenler</h3>
     <div class="row">
@@ -75,6 +168,21 @@
         </div>
         {% endfor %}
     </div>
+<div class="container">
+<h3 style="text-align: center;">Popüler Ürünler</h3>
+     <div class="col-md-12" id="populers">
+
+           <a href="https://www.foruandme.com/urun/atki"><h5>ATKI</h5>
+               <img src="{% static 'images/mostpopulerpages/atki.jpg' %}"></a>
+           <a href="https://www.foruandme.com/urun/kot"><h5>KOT</h5>
+               <img src="{% static 'images/mostpopulerpages/jeans.jpg' %}"></a>
+                    <a href="https://www.foruandme.com/urun/saat"><h5>SAAT</h5>
+               <img src="{% static 'images/mostpopulerpages/saat.jpg' %}"></a>
+                    <a href="https://www.foruandme.com/urun/bot"><h5>BOT</h5>
+               <img src="{% static 'images/mostpopulerpages/BOT.jpeg' %}"></a>
+
+     </div>
+</div>
 </div>
       <footer class="footer">
          {% include 'include/footer.html' %}

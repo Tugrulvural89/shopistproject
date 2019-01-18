@@ -128,6 +128,78 @@ for obj in objects:
             'serinotrack': obj.serino,
             'email': obj.email,
             })
+    if 'ipekyol' == obj.site:
+        ipknm = requests.get(obj.url, allow_redirects=False)
+        rhmi = BeautifulSoup(ipknm.content, "lxml")
+        newsourcehmi = rhmi.find(class_='priceleftt')
+        if newsourcehmi:
+            newsourcehmi = rhmi.find('div', class_="priceleftt").get_text().strip()[0:8].replace('\r\n', '').replace(
+                                    ',', '').replace('.', '')
+            pricedisplay = rhmi.find('div', class_="pricebox").get_text().strip()[0:8].replace('\r\n','')
+        else:
+            newsourcehmi = "0"
+            pricedisplay = "0"
+        listsitem.append({
+            'isim': obj.title,
+            'track': newsourcehmi,
+            'url': obj.url,
+            'image': obj.imageurl,
+            'user': obj.user,
+            'no': obj.no,
+            'site': obj.site,
+            'pricedisplay': pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
+            })
+    if 'Network' == obj.site:
+        mrkfobj = requests.get(obj.url, allow_redirects=False)
+        sourcemrkfobjobj = BeautifulSoup(mrkfobj.content, "lxml")
+        newmrkfobj = sourcemrkfobjobj.find('small', class_="actualPrice")
+        if newmrkfobj:
+            newmrkfobjs = sourcemrkfobjobj.find('small', class_="actualPrice").get_text()\
+                .strip().replace('TL', '').replace(',', '').replace('.', '')
+            pricedisplay = sourcemrkfobjobj.find('small', class_="actualPrice").get_text().strip()
+        else:
+            newmrkfobjs = "0"
+            pricedisplay = "0"
+        listsitem.append({
+            'isim': obj.title,
+            'track': newmrkfobjs,
+            'url': obj.url,
+            'image': obj.imageurl,
+            'user': obj.user,
+            'no': obj.no,
+            'site': obj.site,
+            'pricedisplay': pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
+            })
+
+    if "Nike" == obj.site:
+        mrkfobj = requests.get(obj.url, allow_redirects=True)
+        sourcemrkfobjobj = BeautifulSoup(mrkfobj.content, "lxml")
+        newmrkfobj = sourcemrkfobjobj.find('div', class_="text-color-black")
+        if newmrkfobj:
+            newmrkfobjs = sourcemrkfobjobj.find('div', class_="text-color-black").get_text().strip().replace(' ₺',
+                                                                                                         '').replace(
+                            ',', '').replace('.', '')
+            pricedisplay = sourcemrkfobjobj.find('div', class_="text-color-black").get_text().replace(
+                        ' ₺', '').strip()
+        else:
+            newmrkfobjs = "0"
+            pricedisplay = "0"
+        listsitem.append({
+            'isim': obj.title,
+            'track': newmrkfobjs,
+            'url': obj.url,
+            'image': obj.imageurl,
+            'user': obj.user,
+            'no': obj.no,
+            'site': obj.site,
+            'pricedisplay': pricedisplay,
+            'serinotrack': obj.serino,
+            'email': obj.email,
+            })
 trackitems = Post.objects.all()
 
 for objectitem in listsitem:
@@ -158,8 +230,8 @@ if len(setlists) > 0:
         for comp in tracks:
             emaillist.append([comp.track,[comp.user,comp.isim,comp.serinotrack,comp.track,comp.pricedisplay]])
         if emaillist[0][0] != emaillist[1][0]:
-            #send_mail("Fiyat Değişikliği" , "Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.pricedisplay), 'tugrulv89@foruandme.com', ['{0}'.format(comp.email)], fail_silently=False)
-            print("Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.pricedisplay))
+            send_mail("Fiyat Değişikliği" , "Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.pricedisplay), 'tugrulv89@foruandme.com', ['{0}'.format(comp.email)], fail_silently=False)
+            #print("Merhaba {0}, {1} {2} ürününün fiyatı {3} TL oldu. Kaçırma!.".format(comp.user,comp.isim,comp.serinotrack,comp.pricedisplay))
 else:
     pass
 

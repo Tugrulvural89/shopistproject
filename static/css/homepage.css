@@ -1,13 +1,22 @@
 body {
-    font-family: 'Poppins', serif;
-    font-style: normal;
-    font-weight: 400;
+    font-family: 'Poppins', serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', serif !important;
+}
+
+h3 {font-size: 20px;}
+a {
+    color: black !important;
 }
 
 footer a {
-    color: #007bff;
+    color: #FFFFFF !important;
 }
-
 footer {
     margin-top: 50px;
 }
@@ -19,16 +28,24 @@ footer {
     border-radius:10px;
     border: solid 1px;
     border-color: antiquewhite;
+    box-shadow: 0 0 11px rgba(33,33,33,0.22);
+}
+/* Sytle the product list SRP */
+.col-md-6 ul {
+    list-style:none;
+    padding-right: 40px;
+    transition: box-shadow .3s;
+    border-radius:10px;
+    border: solid 1px;
+    border-color: antiquewhite;
+    box-shadow: 0 0 11px rgba(33,33,33,0.22);
 }
 
 .col-md-4 ul #comment1 {
     overflow: scroll;
 }
 
-ul:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,0.22);
 
-}
 ul img{
     width: 70%;
 }
@@ -82,8 +99,7 @@ div a:hover {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
-    margin-bottom: 100px;
+
 }
 .searchform-sites{
     margin: 10px;
@@ -135,7 +151,7 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
     .forminput {
         width: 40%;
         border-radius: 20px;
-        border:solid 1px;
+        border:solid 1px #bdb6b6;
         text-align: center;
     }
     .pagination a {

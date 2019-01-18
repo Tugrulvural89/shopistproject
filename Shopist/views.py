@@ -9,20 +9,21 @@ import datetime
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
 import pytz
+from django.db.models import Count
 import random
 from django.core.paginator import Paginator
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.core import serializers
 # Create your views here.
 def index(request):
-    newlist = SearchResult.objects.all()
-    newlist=[]
+    newlist = []
+    newlist = sorted(newlist, key=itemgetter('title'), reverse=False)
     denemes = []
     intagrams = Intagram.objects.all().order_by("-image_like_count")[0:3]
     if request.method == 'POST':
         form = NameForm(request.POST)
         form1 = PostForm(request.POST)
-        uyeform = UyeForm(request.POST)
+        uyeform = UyeForm()
         sortedForm = PriceForm(request.POST)
         if uyeform.is_valid():
             uye = uyeform.save(commit=False)
@@ -177,15 +178,57 @@ def index(request):
                         "serino": mrkfr.find('div', class_='pro-product').attrs['data-gtm-product-id'],
                         "img": mrkfr.find('img', class_="visible").attrs['data-original'],
                     })
+            if "ipekyol" in sites:
+                ipknm = form.cleaned_data['your_name']
+                rhmi = requests.get("https://www.ipekyol.com.tr/bul?k=" + ipknm)
+                sourcehmi = BeautifulSoup(rhmi.content, "lxml")
+                newsourcehmi = sourcehmi.find_all('div', attrs={"class": "pitem"})
+                for ei in newsourcehmi:
+                    try:
+                        newlist.append({
+                            "title": ei.find('a', class_="item_main_photo").attrs['title'].strip(),
+                            "price": int(
+                                ei.find('div', class_="pricebox").get_text().strip()[0:8].replace('\r\n', '').replace(
+                                    ',', '').replace('.', '')),
+                            "pricedisplay": ei.find('div', class_="pricebox").get_text().strip()[0:8].replace('\r\n',
+                                                                                                             ''),
+                            "site": "Ipekyol",
+                            "url": "https://www.ipekyol.com.tr" + ei.find('a', class_="item_main_photo").attrs['href'],
+                            "serino": ei.attrs['data-product-id'],
+                            "img": ei.find('img').attrs['data-original'],
+                        })
+                    except KeyError:
+                        pass
+            if "Nike" in sites:
+                nikes = form.cleaned_data['your_name']
+                rhm = requests.get("https://store.nike.com/tr/tr_tr/pw/n/1j7?sl=" + nikes)
+                sourcehm = BeautifulSoup(rhm.content, "lxml")
+                newsourcehm = sourcehm.find_all('div', class_="grid-item fullSize")
+                for ni in newsourcehm:
+                    try:
+                        newlist.append({
+                            "title": ni.find('div', class_="product-name ").get_text().strip(),
+                            "price": int(
+                                ni.find('span', class_="local nsg-font-family--base").get_text().strip().replace(' ₺',
+                                                                                                                '').replace(
+                                    ',', '').replace('.', '')),
+                            "pricedisplay": ni.find('span', class_="local nsg-font-family--base").get_text().replace(
+                                ' ₺', '').strip(),
+                            "site": "Nike",
+                            "url": ni.find('a').attrs['href'].strip(),
+                            "serino": "000000",
+                            "img": ni.find('img').attrs['src'].strip(),
+                        })
+                    except KeyError:
+                        pass
             if len(newlist) >= 1:
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
             if siras == "1":
                 newlist = sorted(newlist, key=itemgetter('price'), reverse=True)
-            if siras =="2":
+            if siras == "2":
                 newlist = sorted(newlist, key=itemgetter('price'), reverse=False)
-            if siras =="2":
-                newlist = newlist
-
+            if siras == "3":
+                newlist = sorted(newlist, key=itemgetter('title'), reverse=True)
             context = {'form': form, 'form1': form1, 'denemes': denemes, 'models': models,'newlist1': newlist1,
                        'newlist':newlist,'kelime':kelime,'uyeform':uyeform,'sortedForm':sortedForm}
             return render(request, 'base.html', context)
@@ -206,7 +249,7 @@ def index(request):
     return render(request, 'base.html', context)
 def contentblog(request):
     if request.method == 'POST':
-        contents_list = ContentBlog.objects.all()
+        contents_list = ContentBlog.objects.all().order_by('-title')
         paginator = Paginator(contents_list, 12)
         page = request.GET.get('page')
         contents = paginator.get_page(page)
@@ -224,14 +267,13 @@ def contentblog(request):
         context = {'contents': contents,'uyeform':uyeform}
         return render(request, 'contentlist.html', context)
     else:
-        contents_list = ContentBlog.objects.all()
+        contents_list = ContentBlog.objects.all().order_by('-title')
         paginator = Paginator(contents_list, 12)
         page = request.GET.get('page')
         contents = paginator.get_page(page)
         uyeform=UyeForm()
         context= {'contents':contents,'uyeform':uyeform}
     return render(request, 'contentlist.html', context)
-
 def contentblogdetail(request, slug=ContentBlog.slug):
     content = get_object_or_404(ContentBlog, slug=slug)
     contents = ContentBlog.objects.all()[0:3]
@@ -255,11 +297,10 @@ def contentblogdetail(request, slug=ContentBlog.slug):
         uyeform = UyeForm()
         context = {'content': content, 'contents': contents, 'instagrams': instagrams,'uyeform':uyeform}
         return render(request, 'contentlistdetail.html', context)
-
-
 def HomePageView(request):
     trackitems = UrunInput.objects.all()[0:6]
-    blogs = Blogs.objects.all()[0:6]
+    uruns = UrunInput.objects.values('kelimearama').annotate(dcount=Count('kelimearama'))[0:6]
+    blogs = Blogs.objects.all().order_by('title')[0:6]
     contents = ContentBlog.objects.all()[0:6]
     keywords = Keyword.objects.all().order_by("kelime")[0:6]
     campaings = Campaign.objects.all().order_by("-title")[0:6]
@@ -282,8 +323,6 @@ def HomePageView(request):
             uye.save()
 
         if form1.is_valid():
-
-            uyeform = UyeForm()
             usermaile = form1.cleaned_data['email']
             send_mail('Yeni Ürün Takibe Alındı!',
                       'Fiyatlarla ilgili detaylara profil sayfandan ulaşabilirsin. ürün indirime girdiğinde ilk seni haberdar edeceğiz:)',
@@ -295,8 +334,6 @@ def HomePageView(request):
                 post.save()
                 return HttpResponse()
         if form.is_valid():
-
-            uyeform = UyeForm()
             ck = Keyword(kelime=form.cleaned_data['your_name'], users=request.user,
                          sites=form.cleaned_data["countries"])
             ck.save()
@@ -450,26 +487,69 @@ def HomePageView(request):
                         "serino": mrkfr.find('div', class_='pro-product').attrs['data-gtm-product-id'],
                         "img": mrkfr.find('img', class_="visible").attrs['data-original'],
                     })
+            if "ipekyol" in sites:
+                ipknm = form.cleaned_data['your_name']
+                rhmi = requests.get("https://www.ipekyol.com.tr/bul?k=" + ipknm)
+                sourcehmi = BeautifulSoup(rhmi.content, "lxml")
+                newsourcehmi = sourcehmi.find_all('div', attrs={"class": "pitem"})
+                for ei in newsourcehmi:
+                    try:
+                        newlist.append({
+                            "title": ei.find('a', class_="item_main_photo").attrs['title'].strip(),
+                            "price": int(
+                                ei.find('div', class_="pricebox").get_text().strip()[0:8].replace('\r\n', '').replace(
+                                    ',', '').replace('.', '')),
+                            "pricedisplay": ei.find('div', class_="pricebox").get_text().strip()[0:8].replace('\r\n',
+                                                                                                             ''),
+                            "site": "Ipekyol",
+                            "url": "https://www.ipekyol.com.tr" + ei.find('a', class_="item_main_photo").attrs['href'],
+                            "serino": ei.attrs['data-product-id'],
+                            "img": ei.find('img').attrs['data-original'],
+                        })
+                    except KeyError:
+                        pass
+            if "Nike" in sites:
+                nikes = form.cleaned_data['your_name']
+                rhm = requests.get("https://store.nike.com/tr/tr_tr/pw/n/1j7?sl=" + nikes)
+                sourcehm = BeautifulSoup(rhm.content, "lxml")
+                newsourcehm = sourcehm.find_all('div', class_="grid-item fullSize")
+                for ni in newsourcehm:
+                    try:
+                        newlist.append({
+                            "title": ni.find('div', class_="product-name ").get_text().strip(),
+                            "price": int(
+                                ni.find('span', class_="local nsg-font-family--base").get_text().strip().replace(' ₺',
+                                                                                                                '').replace(
+                                    ',', '').replace('.', '')),
+                            "pricedisplay": ni.find('span', class_="local nsg-font-family--base").get_text().replace(
+                                ' ₺', '').strip(),
+                            "site": "Nike",
+                            "url": ni.find('a').attrs['href'].strip(),
+                            "serino": "000000",
+                            "img": ni.find('img').attrs['src'].strip(),
+                        })
+                    except KeyError:
+                        pass
             if len(newlist) >= 1:
                 newlist1 = sorted(newlist, key=itemgetter('price'), reverse=False)
             if siras == "1":
                 newlist = sorted(newlist, key=itemgetter('price'), reverse=True)
             if siras == "2":
                 newlist = sorted(newlist, key=itemgetter('price'), reverse=False)
-            if siras == "2":
-                newlist = newlist
+            if siras == "3":
+                newlist = sorted(newlist, key=itemgetter('title'), reverse=True)
             context = {'form': form, 'form1': form1,'uyeform':uyeform, 'denemes': denemes, 'models': models, 'newlist1': newlist1,
-                       'newlist': newlist,'blogs':blogs,
+                       'newlist': newlist,'blogs':blogs,'uruns':uruns,
                        'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}
             return render(request, 'base.html', context)
         else:
-            context = {'blogs': blogs, 'form': form,'uyeform':uyeform,
+            context = {'blogs': blogs, 'form': form,'uyeform':uyeform,'uruns':uruns,
                        'keywords':keywords,'campaings':campaings,'contents':contents,"trackitems":trackitems}
             return render(request, 'home.html', context)
     else:
         intagrams = Intagram.objects.all().order_by("-image_like_count")[0:6]
         uyeform = UyeForm()
-        context = {'blogs':blogs,'form':form,'uyeform':uyeform,
+        context = {'blogs':blogs,'form':form,'uyeform':uyeform,'uruns':uruns,
                        'keywords':keywords,'campaings':campaings,'intagrams':intagrams,'contents':contents,"trackitems":trackitems}
         return render(request, 'home.html', context)
 def profilpage(request):
@@ -542,7 +622,12 @@ def campaign(request):
         uyeform = UyeForm()
         context= {'homelist':homelist,'basedsite':basedsite,'uyeform':uyeform}
         return render(request, 'campaign.html', context)
-
+def urunsayfas(request):
+    #uruns = UrunInput.objects.all().order_by("kelimearama")
+    uruns = UrunInput.objects.values('kelimearama').annotate(dcount=Count('kelimearama'))
+    uyeform = UyeForm()
+    context= {'uruns':uruns,'uyeform':uyeform}
+    return render(request, 'inputsrp.html', context)
 def urunsayfa(request, slug=UrunInput.kelimearama):
     denemes = []
     form1 = PostForm()
@@ -579,8 +664,14 @@ def urunsayfa(request, slug=UrunInput.kelimearama):
               'denemes':denemes,
               'models':models,'form1':form1, 'uyeform':uyeform}
     return render(request, 'input.html', context)
-
-
+def inputtags(request):
+    contentss = Intagram.objects.all().order_by("-image_like_count")
+    paginator = Paginator(contentss, 30)
+    page = request.GET.get('page')
+    contents = paginator.get_page(page)
+    uyeform = UyeForm()
+    context= {'contents':contents,'uyeform':uyeform}
+    return render(request, 'intagram.html', context)
 def testtest(request, slug=UrunInput.kelimearama):
     denemes = []
 

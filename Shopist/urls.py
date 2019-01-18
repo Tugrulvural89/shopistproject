@@ -1,7 +1,5 @@
 from . import views
 from django.urls import path
-from .forms import NameForm
-from django.contrib.auth import get_user_model
 
 
 urlpatterns = [
@@ -10,10 +8,13 @@ urlpatterns = [
     path('campaign/', views.campaign, name='campaign'),
     path('profilpage/', views.profilpage, name='profilpage'),
     path('takip/<int:pk>/', views.post_detail, name='post_detail'),
+    path('urun/', views.urunsayfas, name='urunsayfas'),
     path('urun/<slug>/', views.urunsayfa, name='urunsayfa'),
     path('blog/', views.contentblog, name='contentblog'),
     path('blog/<slug>/', views.contentblogdetail, name='contentblogdetail'),
+    path('intagram/', views.inputtags, name='inputtags'),
 ]
+
 
 
 

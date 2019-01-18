@@ -1,15 +1,17 @@
+{% load staticfiles %}
 {% block nav %}
 
     {% csrf_token %}
 
 <div>
-   <label for="id_your_name"> {% if form.is_valid %}{% else %}<h3>İnternette aradığın tüm ürünleri buradan bulabilirsin</h3>{% endif %}</label></br>
+   <label for="id_your_name">{% if form.is_valid %}{% else %} <img style="width: 50%;height: auto;" src="{% static 'images/logo/mainlogo.png' %}"/>{% endif %}</label>
    {% if form.is_valid %}<input class="forminput" type="text" onfocus="this.value=''" value="{{ form.your_name.value }}"
-      name="your_name" maxlength="100" required="" id="id_your_name">{% else %}<input class="forminput" type="text" onfocus="this.value=''" value="Hayallerindeki Ürünü Ara!"
+      name="your_name" maxlength="100" required="" id="id_your_name">{% else %}<input class="forminput" type="text" onfocus="this.value=''" value="ürün adı girin"
       name="your_name" maxlength="100" required="" id="id_your_name">{% endif %}
 </div>
+    {% if form.is_valid %}
 <div class="searchform-sites">
-   <label>Siteni Seçmeyi Unutma:</label></br>
+   <label></label>
    <span id="id_countries">
       <label for="id_countries_0"><input type="checkbox" name="countries" value="Boyner" id="id_countries_0">
       Boyner</label>
@@ -17,15 +19,23 @@
       HM</label>
       <label for="id_countries_2"><input type="checkbox" name="countries" value="Trendyol" id="id_countries_2">
       Trendyol</label>
-      <!--<label for="id_countries_3"><input type="checkbox" name="countries" value="Zara" id="id_countries_3">
-         Zara</label>-->
+      <label for="id_countries_3"><input type="checkbox" name="countries" value="Nike" id="id_countries_3">
+         Nike</label>
       <label for="id_countries_4"><input type="checkbox" name="countries" value="Morhipo" id="id_countries_4">
       Morhipo</label>
-      <!--<label for="id_countries_5"><input type="checkbox" name="countries" value="Network" id="id_countries_5">
-         Network</label>-->
+      <label for="id_countries_5"><input type="checkbox" name="countries" value="Network" id="id_countries_5">
+         Network</label>
       <label for="id_countries_6"><input type="checkbox" name="countries" value="Markafoni" id="id_countries_6">
       Markafoni</label>
+      <label for="id_countries_7"><input type="checkbox" name="countries" value="ipekyol" id="id_countries_7">
+      İpekyol</label>
+
+
+
+
    </span><br>
+
+    <label>Sırala:</label>
 <select name="sira" id="id_sira">
       <option value="3">Sana En Uygun</option>
   <option value="1">Pahalıdan Ucuza</option>
@@ -33,6 +43,44 @@
   <option value="2">Ucuzdan Pahalıya</option>
 
 </select>
+<input style="border-radius: 10px;" type="submit" class="btn btn-primary btn-lg" value="Ara">
 </div>
-<input style="border-radius: 20px;" type="submit" class="btn btn-primary" value="Ürün Ara">
+
+{% else %}
+<div class="searchform-sites">
+   <label><i class="fa fa-angle-down"></i> Arama Yapmak İstediğin Siteleri Seç <i class="fa fa-angle-down"></i></label>
+   <span id="id_countries">
+      <ul>
+          <li><input type="checkbox" name="countries" value="Boyner" id="id_countries_0"><label for="id_countries_0">
+      <img  style="border:solid 1px grey" src="{% static 'images/logo/boyner.png' %}" /></label></li>
+       <li><input type="checkbox" name="countries" value="HM" id="id_countries_1"><label for="id_countries_1">
+      <img style="border:solid 1px grey" src="{% static 'images/logo/H_M_04.jpg' %}" /></label></li>
+       <li><input type="checkbox" name="countries" value="Trendyol" id="id_countries_2"><label for="id_countries_2">
+      <img  style="border:solid 1px grey" src="{% static 'images/logo/trendyol.jpg' %}" /></label></li>
+      <li><input type="checkbox" name="countries" value="Nike" id="id_countries_3"><label for="id_countries_3">
+         <img  style="border:solid 1px grey" src="{% static 'images/logo/Nike-Logo.jpg' %}" /></label></li>
+       <li><input type="checkbox" name="countries" value="Morhipo" id="id_countries_4"><label for="id_countries_4">
+      <img  style="border:solid 1px grey" src="{% static 'images/logo/morhipo.jpg' %}" /></label></li>
+       <li><input type="checkbox" name="countries" value="Network" id="id_countries_5"><label for="id_countries_5">
+       <img  style="border:solid 1px grey" src="{% static 'images/logo/network.png' %}" /></label></li>
+       <li><input type="checkbox" name="countries" value="Markafoni" id="id_countries_6"><label for="id_countries_6">
+      <img  style="border:solid 1px grey" src="{% static 'images/logo/markafoni-logo.jpg' %}" /></label></li>
+       <li><input type="checkbox" name="countries" value="ipekyol" id="id_countries_7"><label for="id_countries_7">
+      <img  style="border:solid 1px grey" src="{% static 'images/logo/ipekyol.png' %}" /></label></li>
+      </ul>
+   </span>
+
+
+  </div>
+
+<label></label><select name="sira" id="id_sira">
+      <option value="3">Sana En Uygun</option>
+  <option value="1">Pahalıdan Ucuza</option>
+
+  <option value="2">Ucuzdan Pahalıya</option>
+
+</select>
+
+<input style="border-radius: 10px;" type="submit" class="btn btn-primary btn-lg" value="Ara">
+{% endif %}
 {% endblock %}

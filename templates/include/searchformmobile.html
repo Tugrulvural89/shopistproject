@@ -1,0 +1,57 @@
+{% load staticfiles %}
+{% block nav %}
+
+    {% csrf_token %}
+
+<div style="margin-bottom:20px;">
+   <label for="id_your_name">{% if form.is_valid %}{% else %} <img style="width: 50%;height: auto;" src="{% static 'images/logo/mainlogo.png' %}"/><br>Hayalindeki Ürünü Ara{% endif %}</label>
+   {% if form.is_valid %}<input class="forminput" type="text" onfocus="this.value=''" value="{{ form.your_name.value }}"
+      name="your_name" maxlength="100" required="" id="id_your_name">{% else %}<input class="forminput" type="text" onfocus="this.value=''" value="ürün adı girin"
+      name="your_name" maxlength="100" required="" id="id_your_name">{% endif %}
+</div>
+
+<div class="searchform-sites">
+   <label></label>
+   <span id="id_countries" style="display: grid;">
+       <span>
+               <label for="id_countries_0"><input type="checkbox" name="countries" value="Boyner" id="id_countries_0">
+      Boyner</label>
+      <label for="id_countries_1"><input type="checkbox" name="countries" value="HM" id="id_countries_1">
+      HM</label>
+      <label for="id_countries_2"><input type="checkbox" name="countries" value="Trendyol" id="id_countries_2">
+      Trendyol</label>
+
+
+
+              <label for="id_countries_3"><input type="checkbox" name="countries" value="Nike" id="id_countries_3">
+         Nike</label>
+        </span>
+       <span>
+      <label for="id_countries_4"><input type="checkbox" name="countries" value="Morhipo" id="id_countries_4">
+      Morhipo</label>
+      <label for="id_countries_5"><input type="checkbox" name="countries" value="Network" id="id_countries_5">
+         Network</label>
+
+             <label for="id_countries_6"><input type="checkbox" name="countries" value="Markafoni" id="id_countries_6">
+          Markafoni</label>
+          <label for="id_countries_7"><input type="checkbox" name="countries" value="ipekyol" id="id_countries_7">
+          İpekyol</label>
+    </span>
+           </span>
+
+
+
+   </span><br>
+
+    <label>Sırala:</label>
+<select name="sira" id="id_sira">
+      <option value="3">Sana En Uygun</option>
+  <option value="1">Pahalıdan Ucuza</option>
+
+  <option value="2">Ucuzdan Pahalıya</option>
+
+</select>
+<input style="border-radius: 10px;width: 100%" type="submit" class="btn btn-primary btn-lg" value="Ürün Ara">
+</div>
+
+{% endblock %}

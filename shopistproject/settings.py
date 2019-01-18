@@ -96,8 +96,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
  # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Istanbul'
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'tr-TR'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

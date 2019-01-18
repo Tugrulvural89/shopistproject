@@ -4,7 +4,7 @@
    <head>
 
        <meta charset="UTF-8">
-        <title>Foruandme - internetten alışveriş yapanlar için ürün arama motoru</title>
+        <title>foruandme moda ürün arama motoru</title>
        <meta name="keywords" content="fiyat, ucuz, ürün karşılaştırma, uygun, fiyat bulma, moda siteleri, online alışveriş, kampanyalar"/>
        <meta name="description" content="internette aradığın ürünleri tek bir sitede aynı anda karşılaştır ve fiyat takibi yap! En güncel kampanyaları hemen keşfet!"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,21 +17,137 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
       <link rel="icon" href="{% static 'images/favicon.ico' %}">
    </head>
+   <style>
+       @media screen and (min-width: 768px) {
+    #srpformmo {display: none;}ul {list-style-type: none;}  {% if form_is.valid %}{% else %}
+
+    form img {border-radius: 20px;}
+
+form li {
+  display: inline-block;
+}
+
+input[type="checkbox"][id^="id_countries_"] {
+  display: none;
+}
+
+form label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+footer label {
+  border: 0px solid #fff;
+}
+
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 100px;
+  width: 100px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
+{% endif %}
+}
+@media screen and (max-width: 768px) {form label{  border: none;} #srpform {display: none;}}
+       /*footer*/
+.col_white_amrc { color:#FFF;}
+footer { width:100%; background-color:#263238; min-height:250px;}
+.pt2 { padding-top:40px ; margin-bottom:20px ;}
+footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
+.mb10 { padding-bottom:15px ;}
+.footer_ul_amrc { margin:0px ; list-style-type:none ; font-size:14px; padding:0px 0px 10px 0px ; }
+.footer_ul_amrc li {padding:0px 0px 5px 0px;}
+.footer_ul_amrc li a{ color:#CCC;}
+.footer_ul_amrc li a:hover{ color:#fff; text-decoration:none;}
+.fleft { float:left;}
+.padding-right { padding-right:10px; }
+
+.footer_ul2_amrc {margin:0px; list-style-type:none; padding:0px;}
+.footer_ul2_amrc li p { display:table; }
+.footer_ul2_amrc li a:hover { text-decoration:none;}
+.footer_ul2_amrc li i { margin-top:5px;}
+
+.bottom_border { border-bottom:1px solid #323f45; padding-bottom:20px;}
+.foote_bottom_ul_amrc {
+	list-style-type:none;
+	padding:0px;
+	display:table;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+}
+.foote_bottom_ul_amrc li { display:inline;}
+.foote_bottom_ul_amrc li a { color:#999; margin:0 12px;}
+
+.social_footer_ul { display:table; margin:15px auto 0 auto; list-style-type:none;  }
+.social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
+.social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
+.social_footer_ul li i {  width:20px; height:20px; text-align:center;}
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+
+
+   </style>
    <body>
       <div>
 
         {% include 'include/nav.html' %}
 
-         <div class="col-md-12">
-         <form action="" class="searchform" method="post">
+              <div style="margin-bottom: 30px;" class="col-md-12">
+         <form action="" id="srpform" class="searchform" method="post">
             {% include 'include/searchform.html' %}
+
          </form>
-      </div>
+                           <form action="" id="srpformmo" class="searchform" method="post">
+            {% include 'include/searchformmobile.html' %}
+
+         </form>
+
+        </div>
       <div class="container">
         {% if form.is_valid %}
           <ul class="breadcrumb" style="margin: 20px;">
@@ -100,8 +216,9 @@
                  {% empty %}
                  <h3 style="text-align: center">Aradığın ürün bulunamadı. Başka bir ürün aramaya nedersin? Daha çok sitede aramayı deneyebilirsin.</h3>
              {% endfor %}
+
           {% endif %}
-                {% for item in intagrams %}
+           <!--     {% for item in intagrams %}
              <div class="col-md-4">
              <a target="_blank" href="https://www.instagram.com/explore/tags/{{ item.tagname }}">
                  <ul>
@@ -114,7 +231,7 @@
              </a>
              </div>
 
-                {% endfor %}
+                {% endfor %}-->
           </div>
       </div>
       </div>
@@ -132,7 +249,7 @@
 
               gtag('config', 'UA-130645612-1');
             </script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 
 
    <script type="text/javascript">

@@ -11,16 +11,13 @@
   });
 </script>
        <meta charset="UTF-8">
-        <title>Foruandme - internetten alışveriş yapanlar için ürün arama motoru</title>
-       <meta name="keywords" content="ürün blog, ürün inceleme, önizlemeler, yeni moda, trend, ikon ürünler, ucuz ürünler"/>
-       <meta name="description" content="internete aradığın ürün bloglarına, içeriklerine ve incelemelere tek bir siteden foruandme ile ulaşabilirsin."/>
+        <title>foruandme en beğenilen instagram hastaglerini takip etç</title>
+       <meta name="keywords" content="foruandme, instagram, beğeniler, popüler, aramalar, hastag, favori, moda, fotoğraf"/>
+       <meta name="description" content="internete aradığın instagram bloglarına, içeriklerine, fotoğraflarına ve incelemelere tek bir siteden foruandme ile ulaşabilirsin."/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="canonical" href="https://foruandme.com/blog/"/>
+       <link rel="canonical" href="https://foruandme.com/instagram/"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-site-verification" content="EkZ-Pe4grEg4j1Md0cIINp2PfjzMxwO1c2buDVe_LlI" />
-
-      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,39 +27,32 @@
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
       <link rel="icon" href="{% static 'images/favicon.ico' %}">
-       <style>
+              <style>
            .cotainer{margin-left:100px;margin-right:100px;margin-top:50px;}
        </style>
    </head>
 <body>
         {% include 'include/nav.html' %}
-       <!-- <div class="col-md-12" style="width: 100%;background-image: url('{% static 'images/abstract-abstract-expressionism-abstract-painting-1704119.jpg'%}')">
-</div>-->
 
-
-
-
+<div class="cotainer">
 
 <div class="col-md-12">
     <div class="row">
     <div class="col-md-8">
-    <h1>Modayı Takip Et</h1>
+    <h1>En Beğenilenler</h1>
     <div class="row">
 
            {% for content in contents %}
 
-            <div class="col-md-6">
+            <div class="col-md-4">
 
-<ul>
-    <a href="{% url 'contentblogdetail'  slug=content.slug %}">
-    <li><h3>{{ content.title|upper }}</h3></li>
-    <li><img src="{{ content.image }}" title="{{ content.title }}" alt="{{ content.title }}"></li>
-    <li>{{ content.content|truncatewords:20 }} DEVAMI İÇİN...</li>
-    <li>{{ content.crontime }}</li>
-    <li>{{ content.site }}</li></a>
-
+<ul style="overflow: auto">
+    <a target="_blank" href="https://www.instagram.com/explore/tags/{{ content.tagname }}" rel="nofollow">
+    <li><h3>#{{ content.tagname }}</h3></li>
+    <li><img src="{{ content.image_src }}" title="{{ content.tagname }}" alt="{{ content.tagname }}"></li>
+    <li>{{ content.image_comment|truncatechars:60 }} DEVAMI İÇİN...</li>
+        <li>Beğeni: {{ content.image_like_count }}</li></a>
 </ul>
-
 
             </div>
  {% endfor %}
@@ -123,6 +113,31 @@
 
 
     </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       <footer class="footer">

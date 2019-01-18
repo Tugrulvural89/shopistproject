@@ -10,10 +10,12 @@ class NameForm(forms.Form):
         ("Boyner", "Boyner"),
         ("HM", "HM"),
         ("Trendyol", "Trendyol"),
-        ("Zara", "Zara"),
+        ("Nike", "Nike"),
         ("Morhipo", "Morhipo"),
         ("Network", "Network"),
         ("Markafoni", "Markafoni"),
+        ("ipekyol", "İpekyol"),
+
     )
     countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                           choices=OPTIONS,required=True)
