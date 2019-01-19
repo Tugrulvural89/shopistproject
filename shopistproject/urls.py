@@ -26,10 +26,10 @@ sitemaps = {
 
 urlpatterns = [
     path('sitemap.xml',sitemap,{'sitemaps':sitemaps}),
+    path('robots.txt', include('robots.urls')),
     path('', include('Shopist.urls')),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('robots\.txt', include('robots.urls')),
 ]
 
