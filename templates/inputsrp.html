@@ -1,14 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load staticfiles %}
+<html lang="tr-TR">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3023241293141783",
+          enable_page_level_ads: true
+     });
+</script>
+        <meta charset="UTF-8">
+
+        <title>Foruandme - internetten alışveriş yapanlar için ürün arama motoru</title>
+       <meta name="keywords" content="fiyat, ucuz, ürün karşılaştırma, uygun, fiyat bulma, moda siteleri, online alışveriş, kampanyalar"/>
+       <meta name="description" content="internette aradığın ürünleri tek bir sitede aynı anda karşılaştır ve fiyat takibi yap. En güncel kampanyalardan anında haberin olsun."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://foruandme.com/campaign"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="EkZ-Pe4grEg4j1Md0cIINp2PfjzMxwO1c2buDVe_LlI" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+<style>
+ @media screen and (min-width: 768px) {
+     #populers {display: flex;}
+
+    }
+         #populers img {margin-left: auto;margin-right: auto;}
+</style>
 </head>
 <body>
 
 
-{% for x in uruns %}
-    <a href="https://www.foruandme.com/urun/{{ x.kelimearama }}">{{ x.kelimearama }}</a>
+        {% include 'include/nav.html' %}
+
+<div class="container">
+<div class="row">
+
+{% for item in uruns %}
+    <div class="col-md-4" style="margin-left: auto;margin-right: auto">
+    <ul>
+
+        <li> <a target="_blank" href="https://www.foruandme.com/urun/{{ item.kelimearama }}">{{ item.kelimearama }}</a></li>
+    </ul>
+    </div>
 {% endfor %}
+
+
+
+</div>
+
+
+</div>
+<footer class="footer">
+            {% include 'include/footer.html' %}
+</footer>
+
 </body>
+
+<script>
+function openCity(cityName) {
+    var i;
+    var x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(cityName).style.display = "block";
+}
+</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130645612-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130645612-1');
+</script>
+
+
 </html>
+

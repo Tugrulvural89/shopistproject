@@ -3,8 +3,8 @@
 <div class="activefirst">
     <a class="active" href="{% url 'HomePageView' %}"><i class="fa fa-home" aria-hidden="true"></i> Foruandme</a>
     <a class="active" href="{% url 'campaign' %}"><i class="fa fa-flag-o" aria-hidden="true"></i> Kampanyalar</a>
-    <a class="active" href="{% url 'contentblog' %}"><i class="fa fa-book" aria-hidden="true"></i> Blog</a>
-    <a class="active" href="{% url 'index' %}"><i class="fa fa-search" aria-hidden="true"></i> Ara</a>
+    <a class="active" href="{% url 'contentblog' %}"><i class="fa fa-book" aria-hidden="true"></i> Moda</a>
+    <a class="active" href="{% url 'index' %}"><i class="fa fa-search" aria-hidden="true"></i> Ürün Ara</a>
     <a class="active" href="{% url 'inputtags' %}"><i class="fa fa-heart"></i> İnstagram</a>
     {% if user.is_authenticated %}
     <a class="active" href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" aria-hidden="true"></i> Ürünlerim</a>
@@ -36,7 +36,8 @@
   <a class="active" href="{% url 'HomePageView' %}"><i class="fa fa-home"></i></a>
   <div id="myLinks">
     <a href="{% url 'campaign' %}"><i class="fa fa-flag-o" ></i> Kampanyalar</a>
-    <a href="{% url 'contentblog' %}"><i class="fa fa-book"></i> Blog</a>
+    <a href="{% url 'contentblog' %}"><i class="fa fa-book"></i> Moda</a>
+    <a class="active" href="{% url 'inputtags' %}"><i class="fa fa-heart"></i> İnstagram</a>
     {% if user.is_authenticated %}
     <a href="{% url 'profilpage' %}" user=user.id><i class="fa fa-user-o" ></i> Ürünlerim</a>
     {% else %}
